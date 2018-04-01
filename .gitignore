@@ -1,0 +1,7 @@
+.idea
+vendor/*
+!vendor/vendor.json
+conf/local*
+data/wallets/*
+!data/wallets/rinkeby*
+ubex-api*
