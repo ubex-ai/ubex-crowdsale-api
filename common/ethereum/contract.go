@@ -5,7 +5,7 @@ import (
     "github.com/ethereum/go-ethereum/accounts/abi"
     "strings"
     "context"
-    "ubex-api/common/models"
+    "ubex-crowdsale-api/common/models"
     "fmt"
     "github.com/ethereum/go-ethereum"
     "math/big"

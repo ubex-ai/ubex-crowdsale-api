@@ -4,4 +4,4 @@ vendor/*
 conf/local*
 data/wallets/*
 !data/wallets/rinkeby*
-ubex-api*
+ubex-crowdsale-api*

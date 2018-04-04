@@ -3,7 +3,7 @@ package rest
 import (
     "github.com/gin-gonic/gin"
     "net/http"
-    "ubex-api/common/models"
+    "ubex-crowdsale-api/common/models"
     "github.com/sirupsen/logrus"
 )
 
