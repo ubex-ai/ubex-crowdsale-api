@@ -1,8 +1,8 @@
 package main
 
 import (
-    appCommon "ubex-api/common/application"
-    "ubex-api/application"
+    appCommon "ubex-crowdsale-api/common/application"
+    "ubex-crowdsale-api/application"
     "github.com/sirupsen/logrus"
 )
 

@@ -2,9 +2,9 @@ package application
 
 import (
     "github.com/spf13/viper"
-    "ubex-api/common/ethereum"
-    "ubex-api/token"
-    "ubex-api/crowdsale"
+    "ubex-crowdsale-api/common/ethereum"
+    "ubex-crowdsale-api/token"
+    "ubex-crowdsale-api/crowdsale"
 )
 
 func Init() error {

@@ -32,13 +32,13 @@
 package application
 
 import (
-    httpCommon "ubex-api/common/rest"
+    httpCommon "ubex-crowdsale-api/common/rest"
     "github.com/gin-gonic/gin"
     "sync"
-    "ubex-api/common/rest"
-    "ubex-api/wallet"
-    "ubex-api/token"
-    "ubex-api/crowdsale"
+    "ubex-crowdsale-api/common/rest"
+    "ubex-crowdsale-api/wallet"
+    "ubex-crowdsale-api/token"
+    "ubex-crowdsale-api/crowdsale"
 )
 
 var o sync.Once
