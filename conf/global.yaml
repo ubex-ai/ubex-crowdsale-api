@@ -1,0 +1,23 @@
+project:
+  name: ubex-geth-api
+server:
+  host: 0.0.0.0
+  port: 8888
+  url: http://ethereum-api.ubex.ai
+ethereum:
+  socket: https://rinkeby.infura.io
+  wallet:
+    file: data/wallets/rinkeby_owner
+    pass: qwerty333
+  address:
+    token: 0xd75f3e1765d4f3479b25bde50320fd164224e977
+    crowdsale: 0xd0eE519E170f272EEB2f1e895E95A719B858D998
+  start_block:
+    crowdsale: 857820
+  nonce_gap: 15
+  nonce_replacement_timeout: 180
+  gas_price: 50
+  gas_limit: 95000
+  tx_delay: 5
+auth:
+  secret: secret
