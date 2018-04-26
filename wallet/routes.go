@@ -2,9 +2,9 @@ package wallet
 
 import (
     "github.com/gin-gonic/gin"
-    "ubex-api/common/rest"
-    "ubex-api/common/ethereum"
-    "ubex-api/models"
+    "ubex-crowdsale-api/common/rest"
+    "ubex-crowdsale-api/common/ethereum"
+    "ubex-crowdsale-api/models"
 )
 
 func InitRoutes(router *gin.Engine) {

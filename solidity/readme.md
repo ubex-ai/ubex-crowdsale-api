@@ -3,7 +3,7 @@
 source zeppelin contracts
 
 ```console
-cd $GOPATH/src/ubex-api
+cd $GOPATH/src/ubex-crowdsale-api
 rsync -vax vendor/github.com/OpenZeppelin/zeppelin-solidity/contracts/ solidity/zeppelin/
 ```
 
@@ -18,5 +18,5 @@ sudo apt-get install solc
 build go bindings
 
 ```console
-$GOPATH/src/ubex-api/solidity/bin/abigen --sol solidity/UbexCrowdsale.sol --pkg=ubex_crowdsale --out=solidity/bindings/ubex_crowdsale/UbexCrowdsale.go
+$GOPATH/src/ubex-crowdsale-api/solidity/bin/abigen --sol solidity/UbexCrowdsale.sol --pkg=ubex_crowdsale --out=solidity/bindings/ubex_crowdsale/UbexCrowdsale.go
 ```
