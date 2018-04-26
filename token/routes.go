@@ -2,8 +2,8 @@ package token
 
 import (
     "github.com/gin-gonic/gin"
-    "ubex-api/common/rest"
-    "ubex-api/models"
+    "ubex-crowdsale-api/common/rest"
+    "ubex-crowdsale-api/models"
 )
 
 func InitRoutes(router *gin.Engine) {

@@ -1,13 +1,13 @@
 package token
 
 import (
-    "ubex-api/solidity/bindings/ubex_token"
+    "ubex-crowdsale-api/solidity/bindings/ubex_token"
     "github.com/ethereum/go-ethereum/common"
     "github.com/spf13/viper"
     "errors"
     "fmt"
     "math/big"
-    "ubex-api/common/ethereum"
+    "ubex-crowdsale-api/common/ethereum"
     "github.com/ethereum/go-ethereum/core/types"
 )
 
