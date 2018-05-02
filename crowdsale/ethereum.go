@@ -1,17 +1,17 @@
 package crowdsale
 
 import (
-    "ubex-api/solidity/bindings/ubex_crowdsale"
+    "ubex-crowdsale-api/solidity/bindings/ubex_crowdsale"
     "github.com/ethereum/go-ethereum/common"
     "github.com/spf13/viper"
     "errors"
     "fmt"
     "math/big"
-    "ubex-api/common/ethereum"
-    "ubex-api/models"
-    modelsCommon "ubex-api/common/models"
+    "ubex-crowdsale-api/common/ethereum"
+    "ubex-crowdsale-api/models"
+    modelsCommon "ubex-crowdsale-api/common/models"
     "github.com/ethereum/go-ethereum/core/types"
-    "ubex-api/token"
+    "ubex-crowdsale-api/token"
 )
 
 var cr *Crowdsale
