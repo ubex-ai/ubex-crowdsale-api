@@ -1,0 +1,511 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Simple HTTP API to the Ethereum blockchain smart contracts of the UBEX Exchange.",
+    "title": "UBEX Ethereum API.",
+    "contact": {
+      "name": "Dan Gartman",
+      "url": "https://github.com/dangartman",
+      "email": "dan.gartman@hotmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    },
+    "version": "0.3.5"
+  },
+  "basePath": "/",
+  "paths": {
+    "/ubex/balance/:address": {
+      "get": {
+        "description": "Get UBEX token balance for particular Ethereum address.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "platform"
+        ],
+        "summary": "Get UBEX token balance",
+        "operationId": "getUbexBalance",
+        "parameters": [
+          {
+            "type": "string",
+            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "x-go-name": "Address",
+            "description": "Ethereum address",
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalanceSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/ubex/balances": {
+      "post": {
+        "description": "Get UBEX token balances for list of Ethereum addresses.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "platform"
+        ],
+        "summary": "Get UBEX token balances",
+        "operationId": "getUbexBalances",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Addresses"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalancesSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/wallet/balance/:address": {
+      "get": {
+        "description": "Get particular Ethereum wallet balance.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get ETH balance",
+        "operationId": "getEthBalance",
+        "parameters": [
+          {
+            "type": "string",
+            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "x-go-name": "Address",
+            "description": "Ethereum address",
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalanceSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/wallet/balances": {
+      "post": {
+        "description": "Get balances for list of Ethereum addresses.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get a list of balances for Ethereum wallets",
+        "operationId": "getEthBalances",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Addresses"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalancesSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "array",
+      "title": "Address represents the 20 byte address of an Ethereum account.",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "ubex-api/vendor/github.com/ethereum/go-ethereum/common"
+    },
+    "Addresses": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Addresses"
+        }
+      },
+      "x-go-package": "ubex-api/models"
+    },
+    "BlockNonce": {
+      "description": "A BlockNonce is a 64-bit hash which proves (combined with the\nmix-hash) that a sufficient amount of computation has been carried\nout on a block.",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "ubex-api/vendor/github.com/ethereum/go-ethereum/core/types"
+    },
+    "Bloom": {
+      "type": "array",
+      "title": "Bloom represents a 2048 bit bloom filter.",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "ubex-api/vendor/github.com/ethereum/go-ethereum/core/types"
+    },
+    "Events": {
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "description": "filter events by list of Ethereum addresses",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Addresses"
+        },
+        "eventNames": {
+          "description": "filter events by list of event names",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "EventNames"
+        },
+        "latest": {
+          "description": "get events of only latest N blocks",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Latest"
+        }
+      },
+      "x-go-package": "ubex-api/models"
+    },
+    "Hash": {
+      "type": "array",
+      "title": "Hash represents the 32 byte Keccak256 hash of arbitrary data.",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "ubex-api/vendor/github.com/ethereum/go-ethereum/common"
+    },
+    "Header": {
+      "type": "object",
+      "title": "Header represents a block header in the Ethereum blockchain.",
+      "properties": {
+        "difficulty": {
+          "$ref": "#/definitions/Int"
+        },
+        "extraData": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "uint8"
+          },
+          "x-go-name": "Extra"
+        },
+        "gasLimit": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "GasLimit"
+        },
+        "gasUsed": {
+          "type": "integer",
+          "format": "uint64",
+          "x-go-name": "GasUsed"
+        },
+        "logsBloom": {
+          "$ref": "#/definitions/Bloom"
+        },
+        "miner": {
+          "$ref": "#/definitions/Address"
+        },
+        "mixHash": {
+          "$ref": "#/definitions/Hash"
+        },
+        "nonce": {
+          "$ref": "#/definitions/BlockNonce"
+        },
+        "number": {
+          "$ref": "#/definitions/Int"
+        },
+        "parentHash": {
+          "$ref": "#/definitions/Hash"
+        },
+        "receiptsRoot": {
+          "$ref": "#/definitions/Hash"
+        },
+        "sha3Uncles": {
+          "$ref": "#/definitions/Hash"
+        },
+        "stateRoot": {
+          "$ref": "#/definitions/Hash"
+        },
+        "timestamp": {
+          "$ref": "#/definitions/Int"
+        },
+        "transactionsRoot": {
+          "$ref": "#/definitions/Hash"
+        }
+      },
+      "x-go-package": "ubex-api/vendor/github.com/ethereum/go-ethereum/core/types"
+    },
+    "Int": {
+      "description": "The zero value for an Int represents the value 0.",
+      "type": "object",
+      "title": "An Int represents a signed multi-precision integer.",
+      "x-go-package": "math/big"
+    }
+  },
+  "responses": {
+    "ContractEventResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "object",
+                "properties": {
+                  "args": {
+                    "description": "event arguments, differ for each event",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "entity ID this event is linked to",
+                        "type": "string",
+                        "x-go-name": "Id",
+                        "example": "a6fdb91a-149d-11e8-b642-0ed5f89f718b"
+                      },
+                      "ownerAddress": {
+                        "description": "Ethereum address this events is linked to",
+                        "type": "string",
+                        "x-go-name": "OwnerAddress",
+                        "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD"
+                      }
+                    },
+                    "x-go-name": "Args"
+                  },
+                  "blockHash": {
+                    "type": "string",
+                    "x-go-name": "BlockHash"
+                  },
+                  "blockNumber": {
+                    "description": "Ethereum block number event was raised in",
+                    "type": "integer",
+                    "format": "uint64",
+                    "x-go-name": "BlockNumber",
+                    "example": 4589232
+                  },
+                  "blockTime": {
+                    "type": "string",
+                    "x-go-name": "BlockTime"
+                  },
+                  "name": {
+                    "description": "event name",
+                    "type": "string",
+                    "x-go-name": "Name",
+                    "example": "LeadStatusChanged"
+                  },
+                  "removed": {
+                    "type": "boolean",
+                    "x-go-name": "Removed"
+                  },
+                  "transactionHash": {
+                    "description": "Ethereum transaction hash",
+                    "type": "string",
+                    "x-go-name": "TxHash",
+                    "example": "0x23682ef776bfb465433e8f6a6e84eab71f039f039e86933aeca20ee46d01d576"
+                  },
+                  "transactionIndex": {
+                    "type": "integer",
+                    "format": "uint64",
+                    "x-go-name": "TxIndex"
+                  }
+                },
+                "x-go-name": "Events"
+              }
+            },
+            "x-go-name": "Data"
+          }
+        }
+      }
+    },
+    "GetBalanceSuccessResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "description": "Ethereum address",
+                "type": "string",
+                "x-go-name": "Address",
+                "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD"
+              },
+              "balance": {
+                "description": "Ethereum address balance",
+                "type": "string",
+                "x-go-name": "Balance",
+                "example": "42340000000000000000"
+              }
+            },
+            "x-go-name": "Data"
+          }
+        }
+      }
+    },
+    "GetBalancesSuccessResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "balances": {
+                "description": "Ethereum address balances list",
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "x-go-name": "Balances",
+                "example": "{\"0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD\": \"42340000000000000000\"}"
+              }
+            },
+            "x-go-name": "Data"
+          }
+        }
+      }
+    },
+    "GetBlockSuccessResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "hash": {
+                "description": "Block hash",
+                "type": "string",
+                "x-go-name": "Hash",
+                "example": "0x43dbc6e17450307c226e78cc1146a15662fb2ff16369d0e5c24652576b9d8e5e"
+              },
+              "number": {
+                "description": "Block number",
+                "type": "string",
+                "x-go-name": "Number",
+                "example": "5349009"
+              },
+              "raw": {
+                "$ref": "#/definitions/Header"
+              },
+              "timestamp": {
+                "description": "Block creation timestamp",
+                "type": "string",
+                "x-go-name": "Timestamp",
+                "example": "1522415005"
+              }
+            },
+            "x-go-name": "Data"
+          }
+        }
+      }
+    },
+    "RestErrorResponse": {
+      "description": "Error",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "description": "error code",
+                "type": "string",
+                "x-go-name": "Code",
+                "example": "VALIDATION_ERROR"
+              },
+              "message": {
+                "description": "error description",
+                "type": "string",
+                "x-go-name": "Message",
+                "example": "id should be in UUID format"
+              }
+            },
+            "x-go-name": "Error"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "hash": {
+      "type": "apiKey",
+      "name": "X-Sign",
+      "in": "header"
+    },
+    "jwt": {
+      "type": "apiKey",
+      "name": "X-Authorization",
+      "in": "header"
+    }
+  }
+}
