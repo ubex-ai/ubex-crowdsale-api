@@ -11,7 +11,7 @@ ethereum:
     pass: qwerty333
   address:
     token: 0x72147dAED2Ad3c5cB96fF22C62f630F68302F0CA
-    crowdsale: 0xA975F9f373bD9e8E82774e8D75A93F7036623a2c
+    crowdsale: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
   start_block:
     crowdsale: 857820
   nonce_gap: 15
