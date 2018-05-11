@@ -10,8 +10,8 @@ ethereum:
     file: data/wallets/rinkeby_owner
     pass: qwerty333
   address:
-    token: 0xa6bc42627172cd1da4e3218293df826a37b69131
-    crowdsale: 0xa6bc42627172cd1da4e3218293df826a37b69131
+    token: 0x72147dAED2Ad3c5cB96fF22C62f630F68302F0CA
+    crowdsale: 0xA975F9f373bD9e8E82774e8D75A93F7036623a2c
   start_block:
     crowdsale: 857820
   nonce_gap: 15
