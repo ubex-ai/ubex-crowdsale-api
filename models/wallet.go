@@ -10,7 +10,7 @@ type GetBalanceSuccessResponse struct {
     Body struct {
         Data struct {
             // Ethereum address
-            // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
+            // example: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
             Address string `json:"address"`
             // Ethereum address balance
             // example: 42340000000000000000
@@ -27,7 +27,7 @@ type GetBalancesSuccessResponse struct {
     Body struct {
         Data struct {
             // Ethereum address balances list
-            // example: {"0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD": "42340000000000000000"}
+            // example: {"0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373": "42340000000000000000"}
             Balances map[string]string `json:"balances"`
         } `json:"data"`
     }
@@ -58,7 +58,7 @@ type GetBlockSuccessResponse struct {
 // swagger:parameters getEthBalance
 type GetEthBalanceParams struct {
     // Ethereum address
-    // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
+    // example: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
     // in: query
     Address string `json:"address"`
 }

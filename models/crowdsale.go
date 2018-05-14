@@ -6,9 +6,17 @@ type CrowdsaleDeployParams struct {
 }
 
 type CrowdsaleStatus struct {
+    // Ethereum address
+    // example: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
     Address string `json:"address"`
+    // How many token units a buyer gets per wei
+    // example: 10000
     Rate string `json:"rate"`
+    // Total amount of wei raised during crowdsale
+    // example: 234123000000000000000
     WeiRaised string `json:"weiRaised"`
+    // Total amount of issued tokens during crowdsale
+    // example: 2341230000000000000000000
     TokensIssued string `json:"tokensIssued"`
 }
 
@@ -41,7 +49,7 @@ type CrowdsaleStatusResponse struct {
 // swagger:parameters getCrowdsaleBalance
 type GetCrowdsaleBalanceParams struct {
     // Ethereum address
-    // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
+    // example: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
     // in: query
     Address string `json:"address"`
 }

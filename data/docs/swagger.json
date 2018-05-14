@@ -43,7 +43,7 @@
         "parameters": [
           {
             "type": "string",
-            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373",
             "x-go-name": "Address",
             "description": "Ethereum address",
             "name": "address",
@@ -167,7 +167,7 @@
         "parameters": [
           {
             "type": "string",
-            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373",
             "x-go-name": "Address",
             "description": "Ethereum address",
             "name": "address",
@@ -235,7 +235,7 @@
         "parameters": [
           {
             "type": "string",
-            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373",
             "x-go-name": "Address",
             "description": "Ethereum address",
             "name": "address",
@@ -332,20 +332,28 @@
       "type": "object",
       "properties": {
         "address": {
+          "description": "Ethereum address",
           "type": "string",
-          "x-go-name": "Address"
+          "x-go-name": "Address",
+          "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373"
         },
         "rate": {
+          "description": "How many token units a buyer gets per wei",
           "type": "string",
-          "x-go-name": "Rate"
+          "x-go-name": "Rate",
+          "example": "10000"
         },
         "tokensIssued": {
+          "description": "Total amount of issued tokens during crowdsale",
           "type": "string",
-          "x-go-name": "TokensIssued"
+          "x-go-name": "TokensIssued",
+          "example": "2341230000000000000000000"
         },
         "weiRaised": {
+          "description": "Total amount of wei raised during crowdsale",
           "type": "string",
-          "x-go-name": "WeiRaised"
+          "x-go-name": "WeiRaised",
+          "example": "234123000000000000000"
         }
       },
       "x-go-package": "ubex-crowdsale-api/models"
@@ -475,7 +483,7 @@
                         "description": "Ethereum address this events is linked to",
                         "type": "string",
                         "x-go-name": "OwnerAddress",
-                        "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD"
+                        "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373"
                       },
                       "weiAmount": {
                         "description": "wei amount raised",
@@ -560,7 +568,7 @@
                 "description": "Ethereum address",
                 "type": "string",
                 "x-go-name": "Address",
-                "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD"
+                "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373"
               },
               "balance": {
                 "description": "Ethereum address balance",
@@ -589,7 +597,7 @@
                   "type": "string"
                 },
                 "x-go-name": "Balances",
-                "example": "{\"0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD\": \"42340000000000000000\"}"
+                "example": "{\"0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373\": \"42340000000000000000\"}"
               }
             },
             "x-go-name": "Data"

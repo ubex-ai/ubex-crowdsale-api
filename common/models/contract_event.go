@@ -18,7 +18,7 @@ type ContractEventResponse struct {
                 // event arguments, differ for each event
                 Args        struct{
                     // Ethereum address this events is linked to
-                    // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
+                    // example: 0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373
                     OwnerAddress string `json:"ownerAddress"`
                     // wei amount raised
                     // example: 45234000000000000000000
