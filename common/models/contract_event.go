@@ -13,16 +13,16 @@ type ContractEventResponse struct {
         Data struct {
             Events struct{
                 // event name
-                // example: LeadStatusChanged
+                // example: TokenPaid
                 Name        string      `json:"name"`
                 // event arguments, differ for each event
                 Args        struct{
                     // Ethereum address this events is linked to
                     // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
                     OwnerAddress string `json:"ownerAddress"`
-                    // entity ID this event is linked to
-                    // example: a6fdb91a-149d-11e8-b642-0ed5f89f718b
-                    Id           string `json:"id"`
+                    // wei amount raised
+                    // example: 45234000000000000000000
+                    Amount           string `json:"weiAmount"`
                 } `json:"args"`
                 // Ethereum transaction hash
                 // example: 0x23682ef776bfb465433e8f6a6e84eab71f039f039e86933aeca20ee46d01d576

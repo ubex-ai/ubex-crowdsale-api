@@ -13,6 +13,7 @@ func InitRoutes(router *gin.Engine) {
         sale.GET("/status", getSaleStatusAction)
         sale.GET("/balance/:address", getSaleTokensBalanceAction)
         sale.POST("/balances", postSaleTokensBalancesAction)
+        sale.POST("/events", postSaleEventsAction)
     }
 }
 
@@ -82,5 +83,24 @@ func postSaleTokensBalancesAction(c *gin.Context) {
 
     rest.NewResponder(c).Success(gin.H{
         "balances": bals,
+    })
+}
+
+
+func postSaleEventsAction(c *gin.Context) {
+    request := &models.Addresses{}
+    err := c.BindJSON(request)
+    if err != nil {
+        rest.NewResponder(c).ErrorValidation(err.Error())
+        return
+    }
+
+    events, err := GetCrowdsale().Events(request.Addresses)
+    if err != nil {
+        rest.NewResponder(c).Error(err.Error())
+        return
+    }
+    rest.NewResponder(c).Success(gin.H{
+        "events": events,
     })
 }
