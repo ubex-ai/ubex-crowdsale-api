@@ -26,9 +26,9 @@
   },
   "basePath": "/",
   "paths": {
-    "/ubex/balance/:address": {
+    "/crowdsale/balance/:address": {
       "get": {
-        "description": "Get UBEX token balance for particular Ethereum address.",
+        "description": "Get particular Ethereum wallet balance.",
         "consumes": [
           "application/json"
         ],
@@ -36,10 +36,134 @@
           "application/json"
         ],
         "tags": [
-          "platform"
+          "ethereum"
         ],
-        "summary": "Get UBEX token balance",
-        "operationId": "getUbexBalance",
+        "summary": "Get ETH balance",
+        "operationId": "getBalanceByAddress",
+        "parameters": [
+          {
+            "type": "string",
+            "example": "0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD",
+            "x-go-name": "Address",
+            "description": "Ethereum address",
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalanceSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/crowdsale/balances": {
+      "post": {
+        "description": "Get balances for list of Ethereum addresses.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get a list of balances for Ethereum wallets",
+        "operationId": "getBalancesByAddress",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Addresses"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBalancesSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/crowdsale/events": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "crowdsale"
+        ],
+        "summary": "Get UBEX Crowdsale events.",
+        "operationId": "events",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Events"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/ContractEventResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/crowdsale/status": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "crowdsale"
+        ],
+        "summary": "Get UBEX Crowdsale status.",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/CrowdsaleStatusResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/ubex/balance/:address": {
+      "get": {
+        "description": "Get particular Ethereum wallet balance.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ethereum"
+        ],
+        "summary": "Get ETH balance",
+        "operationId": "getBalanceByAddress",
         "parameters": [
           {
             "type": "string",
@@ -62,7 +186,7 @@
     },
     "/ubex/balances": {
       "post": {
-        "description": "Get UBEX token balances for list of Ethereum addresses.",
+        "description": "Get balances for list of Ethereum addresses.",
         "consumes": [
           "application/json"
         ],
@@ -70,10 +194,10 @@
           "application/json"
         ],
         "tags": [
-          "platform"
+          "ethereum"
         ],
-        "summary": "Get UBEX token balances",
-        "operationId": "getUbexBalances",
+        "summary": "Get a list of balances for Ethereum wallets",
+        "operationId": "getBalancesByAddress",
         "parameters": [
           {
             "x-go-name": "Body",
@@ -107,7 +231,7 @@
           "ethereum"
         ],
         "summary": "Get ETH balance",
-        "operationId": "getEthBalance",
+        "operationId": "getBalanceByAddress",
         "parameters": [
           {
             "type": "string",
@@ -141,7 +265,7 @@
           "ethereum"
         ],
         "summary": "Get a list of balances for Ethereum wallets",
-        "operationId": "getEthBalances",
+        "operationId": "getBalancesByAddress",
         "parameters": [
           {
             "x-go-name": "Body",
@@ -203,6 +327,28 @@
         "format": "uint8"
       },
       "x-go-package": "ubex-crowdsale-api/vendor/github.com/ethereum/go-ethereum/core/types"
+    },
+    "CrowdsaleStatus": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "rate": {
+          "type": "string",
+          "x-go-name": "Rate"
+        },
+        "tokensIssued": {
+          "type": "string",
+          "x-go-name": "TokensIssued"
+        },
+        "weiRaised": {
+          "type": "string",
+          "x-go-name": "WeiRaised"
+        }
+      },
+      "x-go-package": "ubex-crowdsale-api/models"
     },
     "Events": {
       "type": "object",
@@ -378,6 +524,23 @@
                   }
                 },
                 "x-go-name": "Events"
+              }
+            },
+            "x-go-name": "Data"
+          }
+        }
+      }
+    },
+    "CrowdsaleStatusResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/definitions/CrowdsaleStatus"
               }
             },
             "x-go-name": "Data"
