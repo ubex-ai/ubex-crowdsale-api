@@ -1,10 +1,10 @@
-// Package classification UBEX Ethereum API.
+// Package classification UBEX Crowdsale Ethereum API.
 //
-// Simple HTTP API to the Ethereum blockchain smart contracts of the UBEX Exchange.
+// Simple HTTP API to the Ethereum blockchain for UBEX Crowdsale.
 //
 //     Schemes: http, https
 //     BasePath: /
-//     Version: 0.3.5
+//     Version: 0.3.8
 //     License: MIT http://opensource.org/licenses/MIT
 //     Contact: Dan Gartman<dan.gartman@hotmail.com> https://github.com/dangartman
 //
@@ -21,12 +21,8 @@
 //     SecurityDefinitions:
 //     hash:
 //          type: apiKey
-//          name: X-Sign
+//          name: X-Authorization
 //          in: header
-//     jwt:
-//         type: apiKey
-//         name: X-Authorization
-//         in: header
 //
 // swagger:meta
 package application

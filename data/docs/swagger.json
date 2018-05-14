@@ -11,8 +11,8 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Simple HTTP API to the Ethereum blockchain smart contracts of the UBEX Exchange.",
-    "title": "UBEX Ethereum API.",
+    "description": "Simple HTTP API to the Ethereum blockchain for UBEX Crowdsale.",
+    "title": "UBEX Crowdsale Ethereum API.",
     "contact": {
       "name": "Dan Gartman",
       "url": "https://github.com/dangartman",
@@ -22,7 +22,7 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "0.3.5"
+    "version": "0.3.8"
   },
   "basePath": "/",
   "paths": {
@@ -661,11 +661,6 @@
   },
   "securityDefinitions": {
     "hash": {
-      "type": "apiKey",
-      "name": "X-Sign",
-      "in": "header"
-    },
-    "jwt": {
       "type": "apiKey",
       "name": "X-Authorization",
       "in": "header"
