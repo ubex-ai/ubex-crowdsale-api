@@ -25,3 +25,15 @@ type TokenPurchaseEventArgs struct {
     WeiAmount string `json:"weiAmount"`
     TokensAmount string `json:"tokensAmount"`
 }
+
+// Success
+//
+// swagger:response
+type CrowdsaleStatusResponse struct {
+    // in: body
+    Body struct {
+        Data struct {
+            Status CrowdsaleStatus `json:"status"`
+        } `json:"data"`
+    }
+}

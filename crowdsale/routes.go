@@ -37,6 +37,18 @@ func postDeploySaleAction(c *gin.Context) {
     })
 }
 
+// swagger:route GET /crowdsale/status crowdsale getStatus
+//
+// Get UBEX Crowdsale status.
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: CrowdsaleStatusResponse
+//   400: RestErrorResponse
+//
 func getSaleStatusAction(c *gin.Context) {
     st, err := GetCrowdsale().Status()
     if err != nil {
@@ -49,6 +61,20 @@ func getSaleStatusAction(c *gin.Context) {
     })
 }
 
+// swagger:route GET /crowdsale/balance/:address crowdsale getBalanceByAddress
+//
+// Get UBEX Crowdsale token balance
+//
+// Get UBEX Crowdsale issued (but not paid) token balance for particular Ethereum address.
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: GetBalanceSuccessResponse
+//   400: RestErrorResponse
+//
 func getSaleTokensBalanceAction(c *gin.Context) {
     addr := c.Param("address")
     bal, err := GetCrowdsale().Balance(addr)
@@ -62,6 +88,20 @@ func getSaleTokensBalanceAction(c *gin.Context) {
     })
 }
 
+// swagger:route POST /crowdsale/balances crowdsale getBalancesByAddress
+//
+// Get UBEX Crowdsale token balances
+//
+// Get UBEX Crowdsale issued (but not paid) token balances for list of Ethereum addresses.
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: GetBalancesSuccessResponse
+//   400: RestErrorResponse
+//
 func postSaleTokensBalancesAction(c *gin.Context) {
     request := &models.Addresses{}
     err := c.BindJSON(request)
@@ -86,7 +126,18 @@ func postSaleTokensBalancesAction(c *gin.Context) {
     })
 }
 
-
+// swagger:route POST /crowdsale/events crowdsale events
+//
+// Get UBEX Crowdsale events.
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: ContractEventResponse
+//   400: RestErrorResponse
+//
 func postSaleEventsAction(c *gin.Context) {
     request := &models.Addresses{}
     err := c.BindJSON(request)
