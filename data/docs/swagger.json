@@ -28,7 +28,7 @@
   "paths": {
     "/crowdsale/balance/:address": {
       "get": {
-        "description": "Get particular Ethereum wallet balance.",
+        "description": "Get UBEX Crowdsale issued (but not paid) token balance for particular Ethereum address.",
         "consumes": [
           "application/json"
         ],
@@ -36,10 +36,10 @@
           "application/json"
         ],
         "tags": [
-          "ethereum"
+          "crowdsale"
         ],
-        "summary": "Get ETH balance",
-        "operationId": "getBalanceByAddress",
+        "summary": "Get UBEX Crowdsale token balance",
+        "operationId": "getCrowdsaleBalance",
         "parameters": [
           {
             "type": "string",
@@ -62,7 +62,7 @@
     },
     "/crowdsale/balances": {
       "post": {
-        "description": "Get balances for list of Ethereum addresses.",
+        "description": "Get UBEX Crowdsale issued (but not paid) token balances for list of Ethereum addresses.",
         "consumes": [
           "application/json"
         ],
@@ -70,10 +70,10 @@
           "application/json"
         ],
         "tags": [
-          "ethereum"
+          "crowdsale"
         ],
-        "summary": "Get a list of balances for Ethereum wallets",
-        "operationId": "getBalancesByAddress",
+        "summary": "Get UBEX Crowdsale token balances",
+        "operationId": "getCrowdsaleBalances",
         "parameters": [
           {
             "x-go-name": "Body",
@@ -152,7 +152,7 @@
     },
     "/ubex/balance/:address": {
       "get": {
-        "description": "Get particular Ethereum wallet balance.",
+        "description": "Get UBEX token balance for particular Ethereum address.",
         "consumes": [
           "application/json"
         ],
@@ -160,10 +160,10 @@
           "application/json"
         ],
         "tags": [
-          "ethereum"
+          "token"
         ],
-        "summary": "Get ETH balance",
-        "operationId": "getBalanceByAddress",
+        "summary": "Get UBEX token balance",
+        "operationId": "getUbexBalance",
         "parameters": [
           {
             "type": "string",
@@ -186,7 +186,7 @@
     },
     "/ubex/balances": {
       "post": {
-        "description": "Get balances for list of Ethereum addresses.",
+        "description": "Get UBEX token balances for list of Ethereum addresses.",
         "consumes": [
           "application/json"
         ],
@@ -194,10 +194,10 @@
           "application/json"
         ],
         "tags": [
-          "ethereum"
+          "token"
         ],
-        "summary": "Get a list of balances for Ethereum wallets",
-        "operationId": "getBalancesByAddress",
+        "summary": "Get UBEX token balances",
+        "operationId": "getUbexBalances",
         "parameters": [
           {
             "x-go-name": "Body",
@@ -231,7 +231,7 @@
           "ethereum"
         ],
         "summary": "Get ETH balance",
-        "operationId": "getBalanceByAddress",
+        "operationId": "getEthBalance",
         "parameters": [
           {
             "type": "string",
@@ -265,7 +265,7 @@
           "ethereum"
         ],
         "summary": "Get a list of balances for Ethereum wallets",
-        "operationId": "getBalancesByAddress",
+        "operationId": "getEthBalances",
         "parameters": [
           {
             "x-go-name": "Body",

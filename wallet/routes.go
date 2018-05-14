@@ -15,7 +15,7 @@ func InitRoutes(router *gin.Engine) {
     }
 }
 
-// swagger:route GET /wallet/balance/:address ethereum getBalanceByAddress
+// swagger:route GET /wallet/balance/:address ethereum getEthBalance
 //
 // Get ETH balance
 //
@@ -43,7 +43,7 @@ func getEthBalanceAction(c *gin.Context) {
     })
 }
 
-// swagger:route POST /wallet/balances ethereum getBalancesByAddress
+// swagger:route POST /wallet/balances ethereum getEthBalances
 //
 // Get a list of balances for Ethereum wallets
 //

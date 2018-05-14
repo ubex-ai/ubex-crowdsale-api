@@ -37,3 +37,18 @@ type CrowdsaleStatusResponse struct {
         } `json:"data"`
     }
 }
+
+// swagger:parameters getCrowdsaleBalance
+type GetCrowdsaleBalanceParams struct {
+    // Ethereum address
+    // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
+    // in: query
+    Address string `json:"address"`
+}
+
+
+// swagger:parameters getCrowdsaleBalances
+type CrowdsaleAddressesParams struct {
+    // in: body
+    Body Addresses `json:"body"`
+}

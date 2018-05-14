@@ -61,7 +61,7 @@ func getSaleStatusAction(c *gin.Context) {
     })
 }
 
-// swagger:route GET /crowdsale/balance/:address crowdsale getBalanceByAddress
+// swagger:route GET /crowdsale/balance/:address crowdsale getCrowdsaleBalance
 //
 // Get UBEX Crowdsale token balance
 //
@@ -88,7 +88,7 @@ func getSaleTokensBalanceAction(c *gin.Context) {
     })
 }
 
-// swagger:route POST /crowdsale/balances crowdsale getBalancesByAddress
+// swagger:route POST /crowdsale/balances crowdsale getCrowdsaleBalances
 //
 // Get UBEX Crowdsale token balances
 //

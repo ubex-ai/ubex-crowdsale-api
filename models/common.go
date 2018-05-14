@@ -1,21 +1,7 @@
 package models
 
-// swagger:parameters getBalanceByAddress
-type GetBalanceParams struct {
-    // Ethereum address
-    // example: 0xED2F74E1fb73b775E6e35720869Ae7A7f4D755aD
-    // in: query
-    Address string `json:"address"`
-}
-
 type Address struct {
     Address string `json:"address"`
-}
-
-// swagger:parameters getBalancesByAddress
-type GetBalanccesByAddressesParams struct {
-    // in: body
-    Body Addresses `json:"body"`
 }
 
 type Addresses struct {
