@@ -103,15 +103,33 @@ func (s *Crowdsale) Status() (*models.CrowdsaleStatus, error) {
     }, nil
 }
 
-func (s *Crowdsale) Events(addrs []string) ([]modelsCommon.ContractEvent, error) {
+func (s *Crowdsale) Events(addrs []string, eventNames []string, latest int64) ([]modelsCommon.ContractEvent, error) {
     hashAddrs := make([]common.Hash, len(addrs))
     for _, addr := range addrs {
         hashAddrs = append(hashAddrs, common.HexToHash(addr))
     }
 
+    hashEventNames := make([]common.Hash, len(eventNames))
+    for _, eventName := range eventNames {
+        name, ok := s.Contract.EventHashes[eventName]
+        if !ok {
+            return nil, fmt.Errorf("unknown event name provided: %s", eventName)
+        }
+        hashEventNames = append(hashEventNames, common.HexToHash(name))
+    }
+
+    from := big.NewInt(viper.GetInt64("ethereum.start_block.crowdsale"))
+    if latest != 0 {
+        b, err := s.Wallet.GetBlockHeaderByNumber(nil)
+        if err != nil {
+            return nil, err
+        }
+        from = big.NewInt(0).Sub(b.Number, big.NewInt(latest))
+    }
+
     events, err := s.GetEventsByTopics(
-        [][]common.Hash{{}, hashAddrs},
-        big.NewInt(viper.GetInt64("ethereum.start_block.crowdsale")),
+        [][]common.Hash{hashEventNames, hashAddrs},
+        from,
     )
     if err != nil {
         return nil, err

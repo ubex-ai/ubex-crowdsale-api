@@ -139,14 +139,14 @@ func postSaleTokensBalancesAction(c *gin.Context) {
 //   400: RestErrorResponse
 //
 func postSaleEventsAction(c *gin.Context) {
-    request := &models.Addresses{}
+    request := &models.Events{}
     err := c.BindJSON(request)
     if err != nil {
         rest.NewResponder(c).ErrorValidation(err.Error())
         return
     }
 
-    events, err := GetCrowdsale().Events(request.Addresses)
+    events, err := GetCrowdsale().Events(request.Addresses, request.EventNames, request.Latest)
     if err != nil {
         rest.NewResponder(c).Error(err.Error())
         return

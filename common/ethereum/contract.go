@@ -16,6 +16,7 @@ type Contract struct {
     Address common.Address
     Abi     abi.ABI
     Events  map[string]string
+    EventHashes  map[string]string
 }
 
 func NewContract(addr string) *Contract {
@@ -34,6 +35,7 @@ func (c *Contract) InitEvents(contractAbi string) (err error) {
     c.Events = make(map[string]string)
     for _, event := range c.Abi.Events {
         c.Events[event.Id().String()] = event.Name
+        c.EventHashes[event.Name] = event.Id().String()
     }
 
     return
