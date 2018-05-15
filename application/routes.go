@@ -4,7 +4,7 @@
 //
 //     Schemes: http, https
 //     BasePath: /
-//     Version: 0.3.8
+//     Version: 0.3.10
 //     License: MIT http://opensource.org/licenses/MIT
 //     Contact: Dan Gartman<dan.gartman@hotmail.com> https://github.com/dangartman
 //
