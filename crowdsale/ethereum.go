@@ -12,6 +12,7 @@ import (
     modelsCommon "ubex-crowdsale-api/common/models"
     "github.com/ethereum/go-ethereum/core/types"
     "ubex-crowdsale-api/token"
+    "github.com/sirupsen/logrus"
 )
 
 var cr *Crowdsale
@@ -101,6 +102,38 @@ func (s *Crowdsale) Status() (*models.CrowdsaleStatus, error) {
         BonusMultiplier: multiplier.String(),
         WeiRaised: weiRaised.String(),
     }, nil
+}
+
+func (s *Crowdsale) Add(addr string, amount string) (common.Hash, error) {
+    tokenAmount, ok := big.NewInt(0).SetString(amount, 0)
+    if !ok {
+        return common.Hash{}, fmt.Errorf("wrong number provided: %s", amount)
+    }
+
+    opts, err := s.Wallet.GetTransactOpts()
+    if err != nil {
+        s.Wallet.OnFailTransaction(err)
+        return common.Hash{}, err
+    }
+
+    tx, err := s.Crowdsale.AddTokens(opts, common.HexToAddress(addr), tokenAmount)
+    if err != nil {
+        logrus.Error("Add failed ", err.Error())
+        s.Wallet.OnFailTransaction(err)
+
+        if s.Wallet.ValidateRepeatableTransaction(err) {
+            logrus.Warn("Repeat Add to ", addr)
+
+            return s.Add(addr, amount)
+        }
+
+        return common.Hash{}, err
+    }
+    s.Wallet.OnSuccessTransaction()
+
+    logrus.Info("Added ", amount, " tokens to ", addr, ", tx ", tx.Hash().String())
+
+    return tx.Hash(), nil
 }
 
 func (s *Crowdsale) Events(addrs []string, eventNames []string, latest int64) ([]modelsCommon.ContractEvent, error) {
