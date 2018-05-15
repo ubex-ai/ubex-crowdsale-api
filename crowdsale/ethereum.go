@@ -50,12 +50,18 @@ func (s *Crowdsale) Deploy(params *models.CrowdsaleDeployParams) (*common.Addres
         return nil, nil, fmt.Errorf("wrong TokenRate provided: %s", params.TokenRate)
     }
 
+    bonusMultiplier, ok := big.NewInt(0).SetString(params.BonusMultiplier, 0)
+    if !ok {
+        return nil, nil, fmt.Errorf("wrong BonusMultiplier provided: %s", params.TokenRate)
+    }
+
     address, tx, _, err := ubex_crowdsale.DeployUbexCrowdsale(
         s.Wallet.Account,
         s.Wallet.Connection,
         tokenRate,
         common.HexToAddress(params.WalletAddress),
         tokenAddr,
+        bonusMultiplier,
     )
     if err != nil {
         return nil, nil, fmt.Errorf("failed to deploy contract: %v", err)
@@ -78,6 +84,11 @@ func (s *Crowdsale) Status() (*models.CrowdsaleStatus, error) {
         return nil, err
     }
 
+    multiplier, err := s.Crowdsale.BonusMultiplier(nil)
+    if err != nil {
+        return nil, err
+    }
+
     tokensIssued, err := s.Crowdsale.TokensIssued(nil)
     if err != nil {
         return nil, err
@@ -87,6 +98,7 @@ func (s *Crowdsale) Status() (*models.CrowdsaleStatus, error) {
         Address: s.Address.String(),
         TokensIssued: tokensIssued.String(),
         Rate: rate.String(),
+        BonusMultiplier: multiplier.String(),
         WeiRaised: weiRaised.String(),
     }, nil
 }
@@ -109,12 +121,10 @@ func (s *Crowdsale) Events(addrs []string) ([]modelsCommon.ContractEvent, error)
 
     for _, event := range events {
         switch {
-        case event.Name == "TokenPaid":
-            event.Args = models.TokenPaidEventArgs{
-                Purchaser: common.BytesToAddress(event.RawArgs[0]).String(),
-                Beneficiary: common.BytesToAddress(event.RawArgs[1]).String(),
-                WeiAmount: common.BytesToHash(event.RawArgs[2]).Big().String(),
-                Created: common.BytesToHash(event.RawArgs[3]).Big().String(),
+        case event.Name == "TokenDelivered" || event.Name == "TokenAdded":
+            event.Args = models.TokenWithAddressEventArgs{
+                Address: common.BytesToAddress(event.RawArgs[0]).String(),
+                TokensAmount: common.BytesToHash(event.RawArgs[1]).Big().String(),
             }
         case event.Name == "TokenPurchase":
             event.Args = models.TokenPurchaseEventArgs{

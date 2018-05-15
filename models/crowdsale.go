@@ -3,6 +3,7 @@ package models
 type CrowdsaleDeployParams struct {
     WalletAddress string `json:"wallet"`
     TokenRate string `json:"rate"`
+    BonusMultiplier string `json:"bonusMultiplier"`
 }
 
 type CrowdsaleStatus struct {
@@ -12,6 +13,9 @@ type CrowdsaleStatus struct {
     // How many token units a buyer gets per wei
     // example: 10000
     Rate string `json:"rate"`
+    // Bonus tokens rate multiplier x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)
+    // example: 1200
+    BonusMultiplier string `json:"bonusMultiplier"`
     // Total amount of wei raised during crowdsale
     // example: 234123000000000000000
     WeiRaised string `json:"weiRaised"`
@@ -20,11 +24,9 @@ type CrowdsaleStatus struct {
     TokensIssued string `json:"tokensIssued"`
 }
 
-type TokenPaidEventArgs struct {
-    Purchaser string `json:"purchaser"`
-    Beneficiary string `json:"beneficiary"`
-    WeiAmount string `json:"weiAmount"`
-    Created string `json:"created"`
+type TokenWithAddressEventArgs struct {
+    Address string `json:"address"`
+    TokensAmount string `json:"tokensAmount"`
 }
 
 type TokenPurchaseEventArgs struct {

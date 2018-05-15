@@ -19,7 +19,7 @@ import (
 const CrowdsaleABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"wallet\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_rate\",\"type\":\"uint256\"},{\"name\":\"_wallet\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenPurchase\",\"type\":\"event\"}]"
 
 // CrowdsaleBin is the compiled bytecode used for deploying new contracts.
-const CrowdsaleBin = `0x608060405234801561001057600080fd5b5060405160608061041a8339810160409081528151602083015191909201516000831161003c57600080fd5b600160a060020a038216151561005157600080fd5b600160a060020a038116151561006657600080fd5b60029290925560018054600160a060020a03928316600160a060020a03199182161790915560008054939092169216919091179055610370806100aa6000396000f30060806040526004361061006c5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632c4e722e81146100775780634042b66f1461009e578063521eb273146100b3578063ec8ac4d8146100e4578063fc0c546a146100f8575b6100753361010d565b005b34801561008357600080fd5b5061008c6101ba565b60408051918252519081900360200190f35b3480156100aa57600080fd5b5061008c6101c0565b3480156100bf57600080fd5b506100c86101c6565b60408051600160a060020a039092168252519081900360200190f35b610075600160a060020a036004351661010d565b34801561010457600080fd5b506100c86101d5565b34600061011a83836101e4565b61012382610209565b600354909150610139908363ffffffff61022616565b6003556101468382610233565b82600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad188484604051808381526020018281526020019250505060405180910390a36101a38383610205565b6101ab61023d565b6101b58383610205565b505050565b60025481565b60035481565b600154600160a060020a031681565b600054600160a060020a031681565b600160a060020a03821615156101f957600080fd5b80151561020557600080fd5b5050565b60006102206002548361027990919063ffffffff16565b92915050565b8181018281101561022057fe5b61020582826102a2565b600154604051600160a060020a03909116903480156108fc02916000818181858888f19350505050158015610276573d6000803e3d6000fd5b50565b600082151561028a57506000610220565b5081810281838281151561029a57fe5b041461022057fe5b60008054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152602482018690529151919092169263a9059cbb92604480820193602093909283900390910190829087803b15801561031457600080fd5b505af1158015610328573d6000803e3d6000fd5b505050506040513d602081101561033e57600080fd5b505050505600a165627a7a72305820a5a8ce41751a33a566fe9c3905405f0d0f02435d99c6d3277136a7ef65d8c8d00029`
+const CrowdsaleBin = `0x608060405234801561001057600080fd5b5060405160608061041a8339810160409081528151602083015191909201516000831161003c57600080fd5b600160a060020a038216151561005157600080fd5b600160a060020a038116151561006657600080fd5b60029290925560018054600160a060020a03928316600160a060020a03199182161790915560008054939092169216919091179055610370806100aa6000396000f30060806040526004361061006c5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416632c4e722e81146100775780634042b66f1461009e578063521eb273146100b3578063ec8ac4d8146100e4578063fc0c546a146100f8575b6100753361010d565b005b34801561008357600080fd5b5061008c6101ba565b60408051918252519081900360200190f35b3480156100aa57600080fd5b5061008c6101c0565b3480156100bf57600080fd5b506100c86101c6565b60408051600160a060020a039092168252519081900360200190f35b610075600160a060020a036004351661010d565b34801561010457600080fd5b506100c86101d5565b34600061011a83836101e4565b61012382610209565b600354909150610139908363ffffffff61022616565b6003556101468382610233565b82600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad188484604051808381526020018281526020019250505060405180910390a36101a38383610205565b6101ab61023d565b6101b58383610205565b505050565b60025481565b60035481565b600154600160a060020a031681565b600054600160a060020a031681565b600160a060020a03821615156101f957600080fd5b80151561020557600080fd5b5050565b60006102206002548361027990919063ffffffff16565b92915050565b8181018281101561022057fe5b61020582826102a2565b600154604051600160a060020a03909116903480156108fc02916000818181858888f19350505050158015610276573d6000803e3d6000fd5b50565b600082151561028a57506000610220565b5081810281838281151561029a57fe5b041461022057fe5b60008054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152602482018690529151919092169263a9059cbb92604480820193602093909283900390910190829087803b15801561031457600080fd5b505af1158015610328573d6000803e3d6000fd5b505050506040513d602081101561033e57600080fd5b505050505600a165627a7a723058203a56165e82bfd87bbfca32f2d2e9eedab57dfff9d5491f3e8a7ad234eee5778d0029`
 
 // DeployCrowdsale deploys a new Ethereum contract, binding an instance of Crowdsale to it.
 func DeployCrowdsale(auth *bind.TransactOpts, backend bind.ContractBackend, _rate *big.Int, _wallet common.Address, _token common.Address) (common.Address, *types.Transaction, *Crowdsale, error) {
@@ -1410,7 +1410,7 @@ func (_ERC20Basic *ERC20BasicFilterer) WatchTransfer(opts *bind.WatchOpts, sink 
 const OwnableABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}]"
 
 // OwnableBin is the compiled bytecode used for deploying new contracts.
-const OwnableBin = `0x608060405234801561001057600080fd5b5060008054600160a060020a033316600160a060020a03199091161790556101778061003d6000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b8114610050578063f2fde38b14610081575b600080fd5b34801561005c57600080fd5b506100656100a4565b60408051600160a060020a039092168252519081900360200190f35b34801561008d57600080fd5b506100a2600160a060020a03600435166100b3565b005b600054600160a060020a031681565b60005433600160a060020a039081169116146100ce57600080fd5b600160a060020a03811615156100e357600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a723058202c8580770c687fbb893f2b60c03ee6ee0bbdd79f6cea2ac91aa34cbb1828271b0029`
+const OwnableBin = `0x608060405234801561001057600080fd5b5060008054600160a060020a033316600160a060020a03199091161790556101778061003d6000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638da5cb5b8114610050578063f2fde38b14610081575b600080fd5b34801561005c57600080fd5b506100656100a4565b60408051600160a060020a039092168252519081900360200190f35b34801561008d57600080fd5b506100a2600160a060020a03600435166100b3565b005b600054600160a060020a031681565b60005433600160a060020a039081169116146100ce57600080fd5b600160a060020a03811615156100e357600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820d7c03b864ec9f81973bc5d235fc53061ebcf00e104a379806367ee499d9e70790029`
 
 // DeployOwnable deploys a new Ethereum contract, binding an instance of Ownable to it.
 func DeployOwnable(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Ownable, error) {
@@ -1759,7 +1759,7 @@ func (_Ownable *OwnableFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts,
 const SafeMathABI = "[]"
 
 // SafeMathBin is the compiled bytecode used for deploying new contracts.
-const SafeMathBin = `0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820ef801c8bbe4971541af51e4b6deb6721e55abe4b80829ca7fded97e611e4694b0029`
+const SafeMathBin = `0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820348c88f9fab73c4ee5fa42367d5b461601c81d15c55664e68efed435eec9f4400029`
 
 // DeploySafeMath deploys a new Ethereum contract, binding an instance of SafeMath to it.
 func DeploySafeMath(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *SafeMath, error) {
@@ -1917,18 +1917,18 @@ func (_SafeMath *SafeMathTransactorRaw) Transact(opts *bind.TransactOpts, method
 }
 
 // UbexCrowdsaleABI is the input ABI used to generate the binding from.
-const UbexCrowdsaleABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"hasClosed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"balances\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"wallet\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"closed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"tokensIssued\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawTokens\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"receiver_\",\"type\":\"address\"}],\"name\":\"withdrawTokensFor\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"closed_\",\"type\":\"bool\"}],\"name\":\"closeCrowdsale\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAmount\",\"type\":\"uint256\"}],\"name\":\"postCrowdsaleWithdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_rate\",\"type\":\"uint256\"},{\"name\":\"_wallet\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"created\",\"type\":\"uint256\"}],\"name\":\"TokenPaid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenPurchase\",\"type\":\"event\"}]"
+const UbexCrowdsaleABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"hasClosed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"balances\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"rate\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"wallet\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"closed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_beneficiary\",\"type\":\"address\"},{\"name\":\"_tokenAmount\",\"type\":\"uint256\"}],\"name\":\"addTokens\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"tokensIssued\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"withdrawTokens\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"receiver_\",\"type\":\"address\"}],\"name\":\"withdrawTokensFor\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"bonusMultiplier\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"closed_\",\"type\":\"bool\"}],\"name\":\"closeCrowdsale\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_tokenAmount\",\"type\":\"uint256\"}],\"name\":\"postCrowdsaleWithdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"bonusMultiplier_\",\"type\":\"uint256\"}],\"name\":\"setBonusMultiplier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_rate\",\"type\":\"uint256\"},{\"name\":\"_wallet\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"},{\"name\":\"_bonusMultiplier\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"receiver\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenDelivered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokenPurchase\",\"type\":\"event\"}]"
 
 // UbexCrowdsaleBin is the compiled bytecode used for deploying new contracts.
-const UbexCrowdsaleBin = `0x608060405234801561001057600080fd5b506040516060806108a08339810160409081528151602083015191909201518282826000831161003f57600080fd5b600160a060020a038216151561005457600080fd5b600160a060020a038116151561006957600080fd5b60029290925560018054600160a060020a03928316600160a060020a03199182161790915560008054938316938216939093179092556004805433909216919092161790555050506107e0806100c06000396000f3006080604052600436106100da5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631515bc2b81146100e557806327e235e31461010e5780632c4e722e146101415780634042b66f14610156578063521eb2731461016b578063597e1fb51461019c5780637c48bbda146101b15780638d8f2adb146101c65780638da5cb5b146101db57806392df61e8146101f0578063ec8ac4d814610211578063ecba18c014610225578063f2fde38b1461023f578063fc0c546a14610260578063fc512b9214610275575b6100e33361028d565b005b3480156100f157600080fd5b506100fa61033a565b604080519115158252519081900360200190f35b34801561011a57600080fd5b5061012f600160a060020a0360043516610343565b60408051918252519081900360200190f35b34801561014d57600080fd5b5061012f610355565b34801561016257600080fd5b5061012f61035b565b34801561017757600080fd5b50610180610361565b60408051600160a060020a039092168252519081900360200190f35b3480156101a857600080fd5b506100fa610370565b3480156101bd57600080fd5b5061012f610379565b3480156101d257600080fd5b506100e361037f565b3480156101e757600080fd5b5061018061038a565b3480156101fc57600080fd5b506100e3600160a060020a0360043516610399565b6100e3600160a060020a036004351661028d565b34801561023157600080fd5b506100e360043515156103c0565b34801561024b57600080fd5b506100e3600160a060020a03600435166103ee565b34801561026c57600080fd5b50610180610487565b34801561028157600080fd5b506100e3600435610496565b34600061029a8383610550565b6102a382610575565b6003549091506102b9908363ffffffff61059216565b6003556102c6838261059f565b82600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad188484604051808381526020018281526020019250505060405180910390a361032383836105fb565b61032b610652565b6103358383610571565b505050565b60075460ff1690565b60056020526000908152604090205481565b60025481565b60035481565b600154600160a060020a031681565b60075460ff1681565b60065481565b6103883361068b565b565b600454600160a060020a031681565b60045433600160a060020a039081169116146103b457600080fd5b6103bd8161068b565b50565b60045433600160a060020a039081169116146103db57600080fd5b6007805460ff1916911515919091179055565b60045433600160a060020a0390811691161461040957600080fd5b600160a060020a038116151561041e57600080fd5b600454604051600160a060020a038084169216907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a36004805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a031681565b60045433600160a060020a039081169116146104b157600080fd5b60008054600154604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a039283166004820152602481018690529051919092169263a9059cbb92604480820193602093909283900390910190829087803b15801561052657600080fd5b505af115801561053a573d6000803e3d6000fd5b505050506040513d602081101561033557600080fd5b600160a060020a038216151561056557600080fd5b80151561057157600080fd5b5050565b600061058c600254836106e990919063ffffffff16565b92915050565b8181018281101561058c57fe5b600160a060020a0382166000908152600560205260409020546105c8908263ffffffff61059216565b600160a060020a0383166000908152600560205260409020556006546105f4908263ffffffff61059216565b6006555050565b81600160a060020a031633600160a060020a03167ff2a4f5f9e4353f847a9a3105227beefae23a042ea7352fbde00f50f1bf8a18378342604051808381526020018281526020019250505060405180910390a35050565b600154604051600160a060020a03909116903480156108fc02916000818181858888f193505050501580156103bd573d6000803e3d6000fd5b600061069561033a565b15156106a057600080fd5b50600160a060020a0381166000908152600560205260408120549081116106c657600080fd5b600160a060020a0382166000908152600560205260408120556105718282610712565b60008215156106fa5750600061058c565b5081810281838281151561070a57fe5b041461058c57fe5b60008054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152602482018690529151919092169263a9059cbb92604480820193602093909283900390910190829087803b15801561078457600080fd5b505af1158015610798573d6000803e3d6000fd5b505050506040513d60208110156107ae57600080fd5b505050505600a165627a7a72305820794710e7ea5b5a7a380e2ed1dd3ff35dbaee62dff84185d41d6578f4f3d26a660029`
+const UbexCrowdsaleBin = `0x608060405234801561001057600080fd5b50604051608080610a2583398101604090815281516020830151918301516060909301519092908383836000831161004757600080fd5b600160a060020a038216151561005c57600080fd5b600160a060020a038116151561007157600080fd5b60029290925560018054600160a060020a03928316600160a060020a031991821617909155600080549383169382169390931790925560048054339092169190921617905560075550505061095a806100cb6000396000f3006080604052600436106100fb5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631515bc2b811461010657806327e235e31461012f5780632c4e722e146101625780634042b66f14610177578063521eb2731461018c578063597e1fb5146101bd5780636039fbdb146101d25780637c48bbda146101f65780638d8f2adb1461020b5780638da5cb5b1461022057806392df61e814610235578063a8b973a114610256578063ec8ac4d81461026b578063ecba18c01461027f578063f2fde38b14610299578063fc0c546a146102ba578063fc512b92146102cf578063fd58e63a146102e7575b610104336102ff565b005b34801561011257600080fd5b5061011b6103ac565b604080519115158252519081900360200190f35b34801561013b57600080fd5b50610150600160a060020a03600435166103b5565b60408051918252519081900360200190f35b34801561016e57600080fd5b506101506103c7565b34801561018357600080fd5b506101506103cd565b34801561019857600080fd5b506101a16103d3565b60408051600160a060020a039092168252519081900360200190f35b3480156101c957600080fd5b5061011b6103e2565b3480156101de57600080fd5b50610104600160a060020a03600435166024356103eb565b34801561020257600080fd5b506101506104a1565b34801561021757600080fd5b506101046104a7565b34801561022c57600080fd5b506101a16104b2565b34801561024157600080fd5b50610104600160a060020a03600435166104c1565b34801561026257600080fd5b506101506104e8565b610104600160a060020a03600435166102ff565b34801561028b57600080fd5b5061010460043515156104ee565b3480156102a557600080fd5b50610104600160a060020a036004351661051c565b3480156102c657600080fd5b506101a16105b5565b3480156102db57600080fd5b506101046004356105c4565b3480156102f357600080fd5b5061010460043561067e565b34600061030c838361069e565b610315826106c3565b60035490915061032b908363ffffffff61070416565b6003556103388382610711565b82600160a060020a031633600160a060020a03167f623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad188484604051808381526020018281526020019250505060405180910390a361039583836106bf565b61039d610780565b6103a783836106bf565b505050565b60085460ff1690565b60056020526000908152604090205481565b60025481565b60035481565b600154600160a060020a031681565b60085460ff1681565b60045433600160a060020a0390811691161461040657600080fd5b600160a060020a03821660009081526005602052604090205461042f908263ffffffff61070416565b600160a060020a03831660009081526005602052604090205560065461045b908263ffffffff61070416565b600655604080518281529051600160a060020a038416917ff4c563a3ea86ff1f4275e8c207df0375a51963f2b831b7bf4da8be938d92876c919081900360200190a25050565b60065481565b6104b0336107b9565b565b600454600160a060020a031681565b60045433600160a060020a039081169116146104dc57600080fd5b6104e5816107b9565b50565b60075481565b60045433600160a060020a0390811691161461050957600080fd5b6008805460ff1916911515919091179055565b60045433600160a060020a0390811691161461053757600080fd5b600160a060020a038116151561054c57600080fd5b600454604051600160a060020a038084169216907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e090600090a36004805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a031681565b60045433600160a060020a039081169116146105df57600080fd5b60008054600154604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a039283166004820152602481018690529051919092169263a9059cbb92604480820193602093909283900390910190829087803b15801561065457600080fd5b505af1158015610668573d6000803e3d6000fd5b505050506040513d60208110156103a757600080fd5b60045433600160a060020a0390811691161461069957600080fd5b600755565b600160a060020a03821615156106b357600080fd5b8015156106bf57600080fd5b5050565b60006106fe6103e86106f26007546106e66002548761084e90919063ffffffff16565b9063ffffffff61084e16565b9063ffffffff61087716565b92915050565b818101828110156106fe57fe5b6107196103ac565b151561072457600080fd5b600160a060020a03821660009081526005602052604090205461074d908263ffffffff61070416565b600160a060020a038316600090815260056020526040902055600654610779908263ffffffff61070416565b6006555050565b600154604051600160a060020a03909116903480156108fc02916000818181858888f193505050501580156104e5573d6000803e3d6000fd5b60006107c36103ac565b15156107ce57600080fd5b50600160a060020a0381166000908152600560205260408120549081116107f457600080fd5b600160a060020a038216600081815260056020908152604080832092909255815184815291517f06fd92518610d6cbeff50af5cfc376de1de0809bc0d255140eb20715f25af9519281900390910190a26106bf828261088c565b600082151561085f575060006106fe565b5081810281838281151561086f57fe5b04146106fe57fe5b6000818381151561088457fe5b049392505050565b60008054604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a038681166004830152602482018690529151919092169263a9059cbb92604480820193602093909283900390910190829087803b1580156108fe57600080fd5b505af1158015610912573d6000803e3d6000fd5b505050506040513d602081101561092857600080fd5b505050505600a165627a7a72305820028fad2316bad4917f4048576e75b40f2b07059a8be921be31dae0746e3b54f00029`
 
 // DeployUbexCrowdsale deploys a new Ethereum contract, binding an instance of UbexCrowdsale to it.
-func DeployUbexCrowdsale(auth *bind.TransactOpts, backend bind.ContractBackend, _rate *big.Int, _wallet common.Address, _token common.Address) (common.Address, *types.Transaction, *UbexCrowdsale, error) {
+func DeployUbexCrowdsale(auth *bind.TransactOpts, backend bind.ContractBackend, _rate *big.Int, _wallet common.Address, _token common.Address, _bonusMultiplier *big.Int) (common.Address, *types.Transaction, *UbexCrowdsale, error) {
 	parsed, err := abi.JSON(strings.NewReader(UbexCrowdsaleABI))
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
-	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(UbexCrowdsaleBin), backend, _rate, _wallet, _token)
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(UbexCrowdsaleBin), backend, _rate, _wallet, _token, _bonusMultiplier)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
@@ -2101,6 +2101,32 @@ func (_UbexCrowdsale *UbexCrowdsaleSession) Balances(arg0 common.Address) (*big.
 // Solidity: function balances( address) constant returns(uint256)
 func (_UbexCrowdsale *UbexCrowdsaleCallerSession) Balances(arg0 common.Address) (*big.Int, error) {
 	return _UbexCrowdsale.Contract.Balances(&_UbexCrowdsale.CallOpts, arg0)
+}
+
+// BonusMultiplier is a free data retrieval call binding the contract method 0xa8b973a1.
+//
+// Solidity: function bonusMultiplier() constant returns(uint256)
+func (_UbexCrowdsale *UbexCrowdsaleCaller) BonusMultiplier(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _UbexCrowdsale.contract.Call(opts, out, "bonusMultiplier")
+	return *ret0, err
+}
+
+// BonusMultiplier is a free data retrieval call binding the contract method 0xa8b973a1.
+//
+// Solidity: function bonusMultiplier() constant returns(uint256)
+func (_UbexCrowdsale *UbexCrowdsaleSession) BonusMultiplier() (*big.Int, error) {
+	return _UbexCrowdsale.Contract.BonusMultiplier(&_UbexCrowdsale.CallOpts)
+}
+
+// BonusMultiplier is a free data retrieval call binding the contract method 0xa8b973a1.
+//
+// Solidity: function bonusMultiplier() constant returns(uint256)
+func (_UbexCrowdsale *UbexCrowdsaleCallerSession) BonusMultiplier() (*big.Int, error) {
+	return _UbexCrowdsale.Contract.BonusMultiplier(&_UbexCrowdsale.CallOpts)
 }
 
 // Closed is a free data retrieval call binding the contract method 0x597e1fb5.
@@ -2311,6 +2337,27 @@ func (_UbexCrowdsale *UbexCrowdsaleCallerSession) WeiRaised() (*big.Int, error) 
 	return _UbexCrowdsale.Contract.WeiRaised(&_UbexCrowdsale.CallOpts)
 }
 
+// AddTokens is a paid mutator transaction binding the contract method 0x6039fbdb.
+//
+// Solidity: function addTokens(_beneficiary address, _tokenAmount uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleTransactor) AddTokens(opts *bind.TransactOpts, _beneficiary common.Address, _tokenAmount *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.contract.Transact(opts, "addTokens", _beneficiary, _tokenAmount)
+}
+
+// AddTokens is a paid mutator transaction binding the contract method 0x6039fbdb.
+//
+// Solidity: function addTokens(_beneficiary address, _tokenAmount uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleSession) AddTokens(_beneficiary common.Address, _tokenAmount *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.Contract.AddTokens(&_UbexCrowdsale.TransactOpts, _beneficiary, _tokenAmount)
+}
+
+// AddTokens is a paid mutator transaction binding the contract method 0x6039fbdb.
+//
+// Solidity: function addTokens(_beneficiary address, _tokenAmount uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleTransactorSession) AddTokens(_beneficiary common.Address, _tokenAmount *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.Contract.AddTokens(&_UbexCrowdsale.TransactOpts, _beneficiary, _tokenAmount)
+}
+
 // BuyTokens is a paid mutator transaction binding the contract method 0xec8ac4d8.
 //
 // Solidity: function buyTokens(_beneficiary address) returns()
@@ -2372,6 +2419,27 @@ func (_UbexCrowdsale *UbexCrowdsaleSession) PostCrowdsaleWithdraw(_tokenAmount *
 // Solidity: function postCrowdsaleWithdraw(_tokenAmount uint256) returns()
 func (_UbexCrowdsale *UbexCrowdsaleTransactorSession) PostCrowdsaleWithdraw(_tokenAmount *big.Int) (*types.Transaction, error) {
 	return _UbexCrowdsale.Contract.PostCrowdsaleWithdraw(&_UbexCrowdsale.TransactOpts, _tokenAmount)
+}
+
+// SetBonusMultiplier is a paid mutator transaction binding the contract method 0xfd58e63a.
+//
+// Solidity: function setBonusMultiplier(bonusMultiplier_ uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleTransactor) SetBonusMultiplier(opts *bind.TransactOpts, bonusMultiplier_ *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.contract.Transact(opts, "setBonusMultiplier", bonusMultiplier_)
+}
+
+// SetBonusMultiplier is a paid mutator transaction binding the contract method 0xfd58e63a.
+//
+// Solidity: function setBonusMultiplier(bonusMultiplier_ uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleSession) SetBonusMultiplier(bonusMultiplier_ *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.Contract.SetBonusMultiplier(&_UbexCrowdsale.TransactOpts, bonusMultiplier_)
+}
+
+// SetBonusMultiplier is a paid mutator transaction binding the contract method 0xfd58e63a.
+//
+// Solidity: function setBonusMultiplier(bonusMultiplier_ uint256) returns()
+func (_UbexCrowdsale *UbexCrowdsaleTransactorSession) SetBonusMultiplier(bonusMultiplier_ *big.Int) (*types.Transaction, error) {
+	return _UbexCrowdsale.Contract.SetBonusMultiplier(&_UbexCrowdsale.TransactOpts, bonusMultiplier_)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
@@ -2578,9 +2646,9 @@ func (_UbexCrowdsale *UbexCrowdsaleFilterer) WatchOwnershipTransferred(opts *bin
 	}), nil
 }
 
-// UbexCrowdsaleTokenPaidIterator is returned from FilterTokenPaid and is used to iterate over the raw logs and unpacked data for TokenPaid events raised by the UbexCrowdsale contract.
-type UbexCrowdsaleTokenPaidIterator struct {
-	Event *UbexCrowdsaleTokenPaid // Event containing the contract specifics and raw log
+// UbexCrowdsaleTokenAddedIterator is returned from FilterTokenAdded and is used to iterate over the raw logs and unpacked data for TokenAdded events raised by the UbexCrowdsale contract.
+type UbexCrowdsaleTokenAddedIterator struct {
+	Event *UbexCrowdsaleTokenAdded // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2594,7 +2662,7 @@ type UbexCrowdsaleTokenPaidIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *UbexCrowdsaleTokenPaidIterator) Next() bool {
+func (it *UbexCrowdsaleTokenAddedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2603,7 +2671,7 @@ func (it *UbexCrowdsaleTokenPaidIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(UbexCrowdsaleTokenPaid)
+			it.Event = new(UbexCrowdsaleTokenAdded)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2618,7 +2686,7 @@ func (it *UbexCrowdsaleTokenPaidIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(UbexCrowdsaleTokenPaid)
+		it.Event = new(UbexCrowdsaleTokenAdded)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2634,62 +2702,52 @@ func (it *UbexCrowdsaleTokenPaidIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *UbexCrowdsaleTokenPaidIterator) Error() error {
+func (it *UbexCrowdsaleTokenAddedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *UbexCrowdsaleTokenPaidIterator) Close() error {
+func (it *UbexCrowdsaleTokenAddedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// UbexCrowdsaleTokenPaid represents a TokenPaid event raised by the UbexCrowdsale contract.
-type UbexCrowdsaleTokenPaid struct {
-	Purchaser   common.Address
+// UbexCrowdsaleTokenAdded represents a TokenAdded event raised by the UbexCrowdsale contract.
+type UbexCrowdsaleTokenAdded struct {
 	Beneficiary common.Address
-	Value       *big.Int
-	Created     *big.Int
+	Amount      *big.Int
 	Raw         types.Log // Blockchain specific contextual infos
 }
 
-// FilterTokenPaid is a free log retrieval operation binding the contract event 0xf2a4f5f9e4353f847a9a3105227beefae23a042ea7352fbde00f50f1bf8a1837.
+// FilterTokenAdded is a free log retrieval operation binding the contract event 0xf4c563a3ea86ff1f4275e8c207df0375a51963f2b831b7bf4da8be938d92876c.
 //
-// Solidity: event TokenPaid(purchaser indexed address, beneficiary indexed address, value uint256, created uint256)
-func (_UbexCrowdsale *UbexCrowdsaleFilterer) FilterTokenPaid(opts *bind.FilterOpts, purchaser []common.Address, beneficiary []common.Address) (*UbexCrowdsaleTokenPaidIterator, error) {
+// Solidity: event TokenAdded(beneficiary indexed address, amount uint256)
+func (_UbexCrowdsale *UbexCrowdsaleFilterer) FilterTokenAdded(opts *bind.FilterOpts, beneficiary []common.Address) (*UbexCrowdsaleTokenAddedIterator, error) {
 
-	var purchaserRule []interface{}
-	for _, purchaserItem := range purchaser {
-		purchaserRule = append(purchaserRule, purchaserItem)
-	}
 	var beneficiaryRule []interface{}
 	for _, beneficiaryItem := range beneficiary {
 		beneficiaryRule = append(beneficiaryRule, beneficiaryItem)
 	}
 
-	logs, sub, err := _UbexCrowdsale.contract.FilterLogs(opts, "TokenPaid", purchaserRule, beneficiaryRule)
+	logs, sub, err := _UbexCrowdsale.contract.FilterLogs(opts, "TokenAdded", beneficiaryRule)
 	if err != nil {
 		return nil, err
 	}
-	return &UbexCrowdsaleTokenPaidIterator{contract: _UbexCrowdsale.contract, event: "TokenPaid", logs: logs, sub: sub}, nil
+	return &UbexCrowdsaleTokenAddedIterator{contract: _UbexCrowdsale.contract, event: "TokenAdded", logs: logs, sub: sub}, nil
 }
 
-// WatchTokenPaid is a free log subscription operation binding the contract event 0xf2a4f5f9e4353f847a9a3105227beefae23a042ea7352fbde00f50f1bf8a1837.
+// WatchTokenAdded is a free log subscription operation binding the contract event 0xf4c563a3ea86ff1f4275e8c207df0375a51963f2b831b7bf4da8be938d92876c.
 //
-// Solidity: event TokenPaid(purchaser indexed address, beneficiary indexed address, value uint256, created uint256)
-func (_UbexCrowdsale *UbexCrowdsaleFilterer) WatchTokenPaid(opts *bind.WatchOpts, sink chan<- *UbexCrowdsaleTokenPaid, purchaser []common.Address, beneficiary []common.Address) (event.Subscription, error) {
+// Solidity: event TokenAdded(beneficiary indexed address, amount uint256)
+func (_UbexCrowdsale *UbexCrowdsaleFilterer) WatchTokenAdded(opts *bind.WatchOpts, sink chan<- *UbexCrowdsaleTokenAdded, beneficiary []common.Address) (event.Subscription, error) {
 
-	var purchaserRule []interface{}
-	for _, purchaserItem := range purchaser {
-		purchaserRule = append(purchaserRule, purchaserItem)
-	}
 	var beneficiaryRule []interface{}
 	for _, beneficiaryItem := range beneficiary {
 		beneficiaryRule = append(beneficiaryRule, beneficiaryItem)
 	}
 
-	logs, sub, err := _UbexCrowdsale.contract.WatchLogs(opts, "TokenPaid", purchaserRule, beneficiaryRule)
+	logs, sub, err := _UbexCrowdsale.contract.WatchLogs(opts, "TokenAdded", beneficiaryRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2699,8 +2757,141 @@ func (_UbexCrowdsale *UbexCrowdsaleFilterer) WatchTokenPaid(opts *bind.WatchOpts
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(UbexCrowdsaleTokenPaid)
-				if err := _UbexCrowdsale.contract.UnpackLog(event, "TokenPaid", log); err != nil {
+				event := new(UbexCrowdsaleTokenAdded)
+				if err := _UbexCrowdsale.contract.UnpackLog(event, "TokenAdded", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// UbexCrowdsaleTokenDeliveredIterator is returned from FilterTokenDelivered and is used to iterate over the raw logs and unpacked data for TokenDelivered events raised by the UbexCrowdsale contract.
+type UbexCrowdsaleTokenDeliveredIterator struct {
+	Event *UbexCrowdsaleTokenDelivered // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *UbexCrowdsaleTokenDeliveredIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(UbexCrowdsaleTokenDelivered)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(UbexCrowdsaleTokenDelivered)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *UbexCrowdsaleTokenDeliveredIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *UbexCrowdsaleTokenDeliveredIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// UbexCrowdsaleTokenDelivered represents a TokenDelivered event raised by the UbexCrowdsale contract.
+type UbexCrowdsaleTokenDelivered struct {
+	Receiver common.Address
+	Amount   *big.Int
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterTokenDelivered is a free log retrieval operation binding the contract event 0x06fd92518610d6cbeff50af5cfc376de1de0809bc0d255140eb20715f25af951.
+//
+// Solidity: event TokenDelivered(receiver indexed address, amount uint256)
+func (_UbexCrowdsale *UbexCrowdsaleFilterer) FilterTokenDelivered(opts *bind.FilterOpts, receiver []common.Address) (*UbexCrowdsaleTokenDeliveredIterator, error) {
+
+	var receiverRule []interface{}
+	for _, receiverItem := range receiver {
+		receiverRule = append(receiverRule, receiverItem)
+	}
+
+	logs, sub, err := _UbexCrowdsale.contract.FilterLogs(opts, "TokenDelivered", receiverRule)
+	if err != nil {
+		return nil, err
+	}
+	return &UbexCrowdsaleTokenDeliveredIterator{contract: _UbexCrowdsale.contract, event: "TokenDelivered", logs: logs, sub: sub}, nil
+}
+
+// WatchTokenDelivered is a free log subscription operation binding the contract event 0x06fd92518610d6cbeff50af5cfc376de1de0809bc0d255140eb20715f25af951.
+//
+// Solidity: event TokenDelivered(receiver indexed address, amount uint256)
+func (_UbexCrowdsale *UbexCrowdsaleFilterer) WatchTokenDelivered(opts *bind.WatchOpts, sink chan<- *UbexCrowdsaleTokenDelivered, receiver []common.Address) (event.Subscription, error) {
+
+	var receiverRule []interface{}
+	for _, receiverItem := range receiver {
+		receiverRule = append(receiverRule, receiverItem)
+	}
+
+	logs, sub, err := _UbexCrowdsale.contract.WatchLogs(opts, "TokenDelivered", receiverRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(UbexCrowdsaleTokenDelivered)
+				if err := _UbexCrowdsale.contract.UnpackLog(event, "TokenDelivered", log); err != nil {
 					return err
 				}
 				event.Raw = log
