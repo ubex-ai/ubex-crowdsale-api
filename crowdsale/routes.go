@@ -127,6 +127,20 @@ func postSaleTokensBalancesAction(c *gin.Context) {
     })
 }
 
+// swagger:route POST /crowdsale/add crowdsale addTokens
+//
+// Add UBEX Crowdsale tokens to particular address
+//
+// Add tokens for specified beneficiary (referral system tokens, for example).
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: TxSuccessResponse
+//   400: RestErrorResponse
+//
 func postSaleAddAction(c *gin.Context) {
     request := &models.AddressWithAmount{}
     err := c.BindJSON(request)

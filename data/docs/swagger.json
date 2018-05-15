@@ -26,6 +26,40 @@
   },
   "basePath": "/",
   "paths": {
+    "/crowdsale/add": {
+      "post": {
+        "description": "Add tokens for specified beneficiary (referral system tokens, for example).",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "crowdsale"
+        ],
+        "summary": "Add UBEX Crowdsale tokens to particular address",
+        "operationId": "addTokens",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddressWithAmount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/TxSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
     "/crowdsale/balance/:address": {
       "get": {
         "description": "Get UBEX Crowdsale issued (but not paid) token balance for particular Ethereum address.",
@@ -297,6 +331,20 @@
       },
       "x-go-package": "ubex-crowdsale-api/vendor/github.com/ethereum/go-ethereum/common"
     },
+    "AddressWithAmount": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "amount": {
+          "type": "string",
+          "x-go-name": "Amount"
+        }
+      },
+      "x-go-package": "ubex-crowdsale-api/models"
+    },
     "Addresses": {
       "type": "object",
       "properties": {
@@ -336,6 +384,12 @@
           "type": "string",
           "x-go-name": "Address",
           "example": "0xFdb3Ae550c4f6a8FD170C3019c97D4F152b65373"
+        },
+        "bonusMultiplier": {
+          "description": "Bonus tokens rate multiplier x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)",
+          "type": "string",
+          "x-go-name": "BonusMultiplier",
+          "example": "1200"
         },
         "rate": {
           "description": "How many token units a buyer gets per wei",
@@ -662,6 +716,26 @@
               }
             },
             "x-go-name": "Error"
+          }
+        }
+      }
+    },
+    "TxSuccessResponse": {
+      "description": "Success",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "tx": {
+                "description": "Ethereum transaction hash",
+                "type": "string",
+                "x-go-name": "Tx",
+                "example": "0x83422ef776bfb465433e8f6a6e84eab71f039f039e86933aeca20ee46d01d251"
+              }
+            },
+            "x-go-name": "Data"
           }
         }
       }

@@ -56,9 +56,14 @@ type GetCrowdsaleBalanceParams struct {
     Address string `json:"address"`
 }
 
-
 // swagger:parameters getCrowdsaleBalances
 type CrowdsaleAddressesParams struct {
     // in: body
     Body Addresses `json:"body"`
+}
+
+// swagger:parameters addTokens
+type CrowdsaleAddTokensParams struct {
+    // in: body
+    Body AddressWithAmount `json:"body"`
 }

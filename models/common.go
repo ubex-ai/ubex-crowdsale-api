@@ -27,3 +27,17 @@ type Events struct {
     // get events of only latest N blocks
     Latest int64 `json:"latest"`
 }
+
+// Success
+//
+// swagger:response
+type TxSuccessResponse struct {
+    // in: body
+    Body struct {
+        Data struct {
+            // Ethereum transaction hash
+            // example: 0x83422ef776bfb465433e8f6a6e84eab71f039f039e86933aeca20ee46d01d251
+            Tx string `json:"tx"`
+        } `json:"data"`
+    }
+}
