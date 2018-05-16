@@ -38,7 +38,7 @@
         "tags": [
           "crowdsale"
         ],
-        "summary": "Add UBEX Crowdsale tokens to particular address",
+        "summary": "Add tokens",
         "operationId": "addTokens",
         "parameters": [
           {
@@ -72,7 +72,7 @@
         "tags": [
           "crowdsale"
         ],
-        "summary": "Get UBEX Crowdsale token balance",
+        "summary": "Get token balance",
         "operationId": "getCrowdsaleBalance",
         "parameters": [
           {
@@ -106,7 +106,7 @@
         "tags": [
           "crowdsale"
         ],
-        "summary": "Get UBEX Crowdsale token balances",
+        "summary": "Get token balances",
         "operationId": "getCrowdsaleBalances",
         "parameters": [
           {
@@ -130,6 +130,7 @@
     },
     "/crowdsale/events": {
       "post": {
+        "description": "Get UBEX Crowdsale events.",
         "consumes": [
           "application/json"
         ],
@@ -139,7 +140,7 @@
         "tags": [
           "crowdsale"
         ],
-        "summary": "Get UBEX Crowdsale events.",
+        "summary": "Get events.",
         "operationId": "events",
         "parameters": [
           {
@@ -161,8 +162,9 @@
         }
       }
     },
-    "/crowdsale/status": {
-      "get": {
+    "/crowdsale/multiplier": {
+      "post": {
+        "description": "Set Bonus tokens rate multiplier, x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)",
         "consumes": [
           "application/json"
         ],
@@ -172,7 +174,41 @@
         "tags": [
           "crowdsale"
         ],
-        "summary": "Get UBEX Crowdsale status.",
+        "summary": "Set multiplier",
+        "operationId": "setMultiplier",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SetMultiplierParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/TxSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/crowdsale/status": {
+      "get": {
+        "description": "Get UBEX Crowdsale status.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "crowdsale"
+        ],
+        "summary": "Get status.",
         "operationId": "getStatus",
         "responses": {
           "200": {
@@ -431,11 +467,11 @@
           },
           "x-go-name": "EventNames"
         },
-        "latest": {
-          "description": "get events of only latest N blocks",
+        "startBlock": {
+          "description": "get events from specified block",
           "type": "integer",
           "format": "int64",
-          "x-go-name": "Latest"
+          "x-go-name": "StartBlock"
         }
       },
       "x-go-package": "ubex-crowdsale-api/models"
@@ -515,6 +551,16 @@
       "type": "object",
       "title": "An Int represents a signed multi-precision integer.",
       "x-go-package": "math/big"
+    },
+    "SetMultiplierParams": {
+      "type": "object",
+      "properties": {
+        "bonusMultiplier": {
+          "type": "string",
+          "x-go-name": "BonusMultiplier"
+        }
+      },
+      "x-go-package": "ubex-crowdsale-api/models"
     }
   },
   "responses": {
