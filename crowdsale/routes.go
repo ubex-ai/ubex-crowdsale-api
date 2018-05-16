@@ -40,6 +40,8 @@ func postDeploySaleAction(c *gin.Context) {
 
 // swagger:route GET /crowdsale/status crowdsale getStatus
 //
+// Get status.
+//
 // Get UBEX Crowdsale status.
 //
 // Consumes:
@@ -64,7 +66,7 @@ func getSaleStatusAction(c *gin.Context) {
 
 // swagger:route GET /crowdsale/balance/:address crowdsale getCrowdsaleBalance
 //
-// Get UBEX Crowdsale token balance
+// Get token balance
 //
 // Get UBEX Crowdsale issued (but not paid) token balance for particular Ethereum address.
 //
@@ -91,7 +93,7 @@ func getSaleTokensBalanceAction(c *gin.Context) {
 
 // swagger:route POST /crowdsale/balances crowdsale getCrowdsaleBalances
 //
-// Get UBEX Crowdsale token balances
+// Get token balances
 //
 // Get UBEX Crowdsale issued (but not paid) token balances for list of Ethereum addresses.
 //
@@ -129,7 +131,7 @@ func postSaleTokensBalancesAction(c *gin.Context) {
 
 // swagger:route POST /crowdsale/add crowdsale addTokens
 //
-// Add UBEX Crowdsale tokens to particular address
+// Add tokens
 //
 // Add tokens for specified beneficiary (referral system tokens, for example).
 //
@@ -162,6 +164,8 @@ func postSaleAddAction(c *gin.Context) {
 
 // swagger:route POST /crowdsale/events crowdsale events
 //
+// Get events.
+//
 // Get UBEX Crowdsale events.
 //
 // Consumes:
@@ -180,7 +184,7 @@ func postSaleEventsAction(c *gin.Context) {
         return
     }
 
-    events, err := GetCrowdsale().Events(request.Addresses, request.EventNames, request.Latest)
+    events, err := GetCrowdsale().Events(request.Addresses, request.EventNames, request.StartBlock)
     if err != nil {
         rest.NewResponder(c).Error(err.Error())
         return

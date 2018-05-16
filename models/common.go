@@ -24,8 +24,8 @@ type Events struct {
     Addresses []string `json:"addresses"`
     // filter events by list of event names
     EventNames []string `json:"eventNames"`
-    // get events of only latest N blocks
-    Latest int64 `json:"latest"`
+    // get events from specified block
+    StartBlock int64 `json:"startBlock"`
 }
 
 // Success

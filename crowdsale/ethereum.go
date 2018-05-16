@@ -136,7 +136,7 @@ func (s *Crowdsale) Add(addr string, amount string) (common.Hash, error) {
     return tx.Hash(), nil
 }
 
-func (s *Crowdsale) Events(addrs []string, eventNames []string, latest int64) ([]modelsCommon.ContractEvent, error) {
+func (s *Crowdsale) Events(addrs []string, eventNames []string, startBlock int64) ([]modelsCommon.ContractEvent, error) {
     hashAddrs := make([]common.Hash, len(addrs))
     for _, addr := range addrs {
         hashAddrs = append(hashAddrs, common.HexToHash(addr))
@@ -152,12 +152,8 @@ func (s *Crowdsale) Events(addrs []string, eventNames []string, latest int64) ([
     }
 
     from := big.NewInt(viper.GetInt64("ethereum.start_block.crowdsale"))
-    if latest != 0 {
-        b, err := s.Wallet.GetBlockHeaderByNumber(nil)
-        if err != nil {
-            return nil, err
-        }
-        from = big.NewInt(0).Sub(b.Number, big.NewInt(latest))
+    if startBlock != 0 {
+        from = big.NewInt(startBlock)
     }
 
     events, err := s.GetEventsByTopics(
