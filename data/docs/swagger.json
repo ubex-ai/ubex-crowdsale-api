@@ -22,7 +22,7 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "0.3.10"
+    "version": "0.3.12"
   },
   "basePath": "/",
   "paths": {
@@ -121,6 +121,40 @@
         "responses": {
           "200": {
             "$ref": "#/responses/GetBalancesSuccessResponse"
+          },
+          "400": {
+            "$ref": "#/responses/RestErrorResponse"
+          }
+        }
+      }
+    },
+    "/crowdsale/close": {
+      "post": {
+        "description": "Set closed crowdsale status",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "crowdsale"
+        ],
+        "summary": "Close crowdsale",
+        "operationId": "closeSale",
+        "parameters": [
+          {
+            "x-go-name": "Body",
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/CloseSaleParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/TxSuccessResponse"
           },
           "400": {
             "$ref": "#/responses/RestErrorResponse"
@@ -412,6 +446,16 @@
       },
       "x-go-package": "ubex-crowdsale-api/vendor/github.com/ethereum/go-ethereum/core/types"
     },
+    "CloseSaleParams": {
+      "type": "object",
+      "properties": {
+        "close": {
+          "type": "boolean",
+          "x-go-name": "Close"
+        }
+      },
+      "x-go-package": "ubex-crowdsale-api/models"
+    },
     "CrowdsaleStatus": {
       "type": "object",
       "properties": {
@@ -556,8 +600,10 @@
       "type": "object",
       "properties": {
         "bonusMultiplier": {
+          "description": "Bonus tokens rate multiplier x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)",
           "type": "string",
-          "x-go-name": "BonusMultiplier"
+          "x-go-name": "BonusMultiplier",
+          "example": "1200"
         }
       },
       "x-go-package": "ubex-crowdsale-api/models"
