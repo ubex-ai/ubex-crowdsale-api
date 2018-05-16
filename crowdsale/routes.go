@@ -14,6 +14,7 @@ func InitRoutes(router *gin.Engine) {
         sale.GET("/balance/:address", getSaleTokensBalanceAction)
         sale.POST("/balances", postSaleTokensBalancesAction)
         sale.POST("/add", rest.SignRequired(), postSaleAddAction)
+        sale.POST("/multiplier", rest.SignRequired(), postSetBonusMultiplierAction)
         sale.POST("/events", postSaleEventsAction)
     }
 }
@@ -152,6 +153,39 @@ func postSaleAddAction(c *gin.Context) {
     }
 
     tx, err := GetCrowdsale().Add(request.Address, request.Amount)
+    if err != nil {
+        rest.NewResponder(c).Error(err.Error())
+        return
+    }
+
+    rest.NewResponder(c).Success(gin.H{
+        "tx": tx.String(),
+    })
+}
+
+// swagger:route POST /crowdsale/multiplier crowdsale setMultiplier
+//
+// Set multiplier
+//
+// Set Bonus tokens rate multiplier, x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: TxSuccessResponse
+//   400: RestErrorResponse
+//
+func postSetBonusMultiplierAction(c *gin.Context) {
+    request := &models.SetMultiplierParams{}
+    err := c.BindJSON(request)
+    if err != nil {
+        rest.NewResponder(c).ErrorValidation(err.Error())
+        return
+    }
+
+    tx, err := GetCrowdsale().SetBonusMultiplier(request.BonusMultiplier)
     if err != nil {
         rest.NewResponder(c).Error(err.Error())
         return

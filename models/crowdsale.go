@@ -67,3 +67,13 @@ type CrowdsaleAddTokensParams struct {
     // in: body
     Body AddressWithAmount `json:"body"`
 }
+
+type SetMultiplierParams struct {
+    BonusMultiplier string `json:"bonusMultiplier"`
+}
+
+// swagger:parameters setMultiplier
+type SetMultiplierRequest struct {
+    // in: body
+    Body SetMultiplierParams `json:"body"`
+}

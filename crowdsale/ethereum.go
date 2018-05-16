@@ -136,6 +136,38 @@ func (s *Crowdsale) Add(addr string, amount string) (common.Hash, error) {
     return tx.Hash(), nil
 }
 
+func (s *Crowdsale) SetBonusMultiplier(multiplier string) (common.Hash, error) {
+    multiplierCoeff, ok := big.NewInt(0).SetString(multiplier, 0)
+    if !ok {
+        return common.Hash{}, fmt.Errorf("wrong number provided: %s", multiplier)
+    }
+
+    opts, err := s.Wallet.GetTransactOpts()
+    if err != nil {
+        s.Wallet.OnFailTransaction(err)
+        return common.Hash{}, err
+    }
+
+    tx, err := s.Crowdsale.SetBonusMultiplier(opts, multiplierCoeff)
+    if err != nil {
+        logrus.Error("SetBonusMultiplier failed ", err.Error())
+        s.Wallet.OnFailTransaction(err)
+
+        if s.Wallet.ValidateRepeatableTransaction(err) {
+            logrus.Warn("Repeat SetBonusMultiplier to ", multiplier)
+
+            return s.SetBonusMultiplier(multiplier)
+        }
+
+        return common.Hash{}, err
+    }
+    s.Wallet.OnSuccessTransaction()
+
+    logrus.Info("Multiplier is set to ", multiplier, ", tx ", tx.Hash().String())
+
+    return tx.Hash(), nil
+}
+
 func (s *Crowdsale) Events(addrs []string, eventNames []string, startBlock int64) ([]modelsCommon.ContractEvent, error) {
     hashAddrs := make([]common.Hash, len(addrs))
     for _, addr := range addrs {
