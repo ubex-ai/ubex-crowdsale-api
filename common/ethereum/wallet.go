@@ -96,7 +96,7 @@ func (w *Wallet) GetTransactOpts() (*bind.TransactOpts, error) {
 
     logrus.Info("Delaying for ", w.nextTxDelay)
     time.Sleep(w.nextTxDelay)
-    w.nextTxDelay = time.Duration(viper.GetInt64("geth.tx_delay")) * time.Second
+    w.nextTxDelay = time.Duration(viper.GetInt64("ethereum.tx_delay")) * time.Second
 
     gas, err := w.Connection.SuggestGasPrice(context.TODO())
     if err != nil {
@@ -104,18 +104,16 @@ func (w *Wallet) GetTransactOpts() (*bind.TransactOpts, error) {
     }
 
     if gas.Cmp(
-        big.NewInt(1).Mul(big.NewInt(viper.GetInt64("geth.gas_price")), Gwei),
+        big.NewInt(1).Mul(big.NewInt(viper.GetInt64("ethereum.gas_price")), Gwei),
     ) == 1 {
-        logrus.Warn("gas price ", gas, " too high, reducing...")
-        gas = big.NewInt(1).Mul(
-            big.NewInt(viper.GetInt64("geth.gas_price") + int64(rand.Intn(6))),
-            Gwei,
-        )
+        newGas := viper.GetInt64("ethereum.gas_price") + int64(rand.Intn(6))
+        logrus.Warn("gas price ", gas, " too high, reducing to ", newGas, "...")
+        gas = big.NewInt(1).Mul(big.NewInt(newGas), Gwei)
     }
 
     if n, err := w.Connection.PendingNonceAt(context.TODO(), w.Account.From); err == nil {
         if w.nonceGapReached.Add(
-            time.Duration(viper.GetInt64("geth.nonce_replacement_timeout")),
+            time.Duration(viper.GetInt64("ethereum.nonce_replacement_timeout")),
         ).Before(time.Now()) {
             logrus.Warn("local nonce ", w.nonce, " was replaced by chain nonce ", n)
             w.nonce = n
@@ -127,14 +125,14 @@ func (w *Wallet) GetTransactOpts() (*bind.TransactOpts, error) {
                     big.NewInt(2),
                 ),
             )
-            w.nextTxDelay = time.Duration(viper.GetInt64("geth.tx_delay")) * 10 * time.Second
+            w.nextTxDelay = time.Duration(viper.GetInt64("ethereum.tx_delay")) * 10 * time.Second
         }
 
         if w.nonce > n {
             logrus.Warn("local nonce ", w.nonce, " > chain nonce ", n, " use local nonce")
         }
 
-        if w.nonce > n + uint64(viper.GetInt64("geth.nonce_gap")) {
+        if w.nonce > n + uint64(viper.GetInt64("ethereum.nonce_gap")) {
             if w.nonceGapReached.After(time.Now()) {
                 w.nonceGapReached = time.Now()
             }
