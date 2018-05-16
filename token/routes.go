@@ -37,7 +37,7 @@ func postDeployTokenAction(c *gin.Context) {
 
 // swagger:route GET /ubex/balance/:address token getUbexBalance
 //
-// Get UBEX token balance
+// Get balance
 //
 // Get UBEX token balance for particular Ethereum address.
 //
@@ -65,7 +65,7 @@ func getUbexBalanceAction(c *gin.Context) {
 
 // swagger:route POST /ubex/balances token getUbexBalances
 //
-// Get UBEX token balances
+// Get balances
 //
 // Get UBEX token balances for list of Ethereum addresses.
 //

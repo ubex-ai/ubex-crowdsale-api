@@ -266,7 +266,7 @@
         "tags": [
           "token"
         ],
-        "summary": "Get UBEX token balance",
+        "summary": "Get balance",
         "operationId": "getUbexBalance",
         "parameters": [
           {
@@ -300,7 +300,7 @@
         "tags": [
           "token"
         ],
-        "summary": "Get UBEX token balances",
+        "summary": "Get balances",
         "operationId": "getUbexBalances",
         "parameters": [
           {
@@ -334,7 +334,7 @@
         "tags": [
           "ethereum"
         ],
-        "summary": "Get ETH balance",
+        "summary": "Get balance",
         "operationId": "getEthBalance",
         "parameters": [
           {
@@ -368,7 +368,7 @@
         "tags": [
           "ethereum"
         ],
-        "summary": "Get a list of balances for Ethereum wallets",
+        "summary": "Get balances",
         "operationId": "getEthBalances",
         "parameters": [
           {
