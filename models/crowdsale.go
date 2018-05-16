@@ -69,6 +69,8 @@ type CrowdsaleAddTokensParams struct {
 }
 
 type SetMultiplierParams struct {
+    // Bonus tokens rate multiplier x1000 (i.e. 1200 is 1.2 x 1000 = 120% x1000 = +20% bonus)
+    // example: 1200
     BonusMultiplier string `json:"bonusMultiplier"`
 }
 
@@ -76,4 +78,14 @@ type SetMultiplierParams struct {
 type SetMultiplierRequest struct {
     // in: body
     Body SetMultiplierParams `json:"body"`
+}
+
+type CloseSaleParams struct {
+    Close bool `json:"close"`
+}
+
+// swagger:parameters closeSale
+type CloseSaleRequest struct {
+    // in: body
+    Body CloseSaleParams `json:"body"`
 }

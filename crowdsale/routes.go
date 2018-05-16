@@ -15,6 +15,7 @@ func InitRoutes(router *gin.Engine) {
         sale.POST("/balances", postSaleTokensBalancesAction)
         sale.POST("/add", rest.SignRequired(), postSaleAddAction)
         sale.POST("/multiplier", rest.SignRequired(), postSetBonusMultiplierAction)
+        sale.POST("/close", rest.SignRequired(), postCloseAction)
         sale.POST("/events", postSaleEventsAction)
     }
 }
@@ -186,6 +187,39 @@ func postSetBonusMultiplierAction(c *gin.Context) {
     }
 
     tx, err := GetCrowdsale().SetBonusMultiplier(request.BonusMultiplier)
+    if err != nil {
+        rest.NewResponder(c).Error(err.Error())
+        return
+    }
+
+    rest.NewResponder(c).Success(gin.H{
+        "tx": tx.String(),
+    })
+}
+
+// swagger:route POST /crowdsale/close crowdsale closeSale
+//
+// Close crowdsale
+//
+// Set closed crowdsale status
+//
+// Consumes:
+// - application/json
+// Produces:
+// - application/json
+// Responses:
+//   200: TxSuccessResponse
+//   400: RestErrorResponse
+//
+func postCloseAction(c *gin.Context) {
+    request := &models.CloseSaleParams{}
+    err := c.BindJSON(request)
+    if err != nil {
+        rest.NewResponder(c).ErrorValidation(err.Error())
+        return
+    }
+
+    tx, err := GetCrowdsale().Close(request.Close)
     if err != nil {
         rest.NewResponder(c).Error(err.Error())
         return

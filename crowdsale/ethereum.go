@@ -168,6 +168,33 @@ func (s *Crowdsale) SetBonusMultiplier(multiplier string) (common.Hash, error) {
     return tx.Hash(), nil
 }
 
+func (s *Crowdsale) Close(close bool) (common.Hash, error) {
+    opts, err := s.Wallet.GetTransactOpts()
+    if err != nil {
+        s.Wallet.OnFailTransaction(err)
+        return common.Hash{}, err
+    }
+
+    tx, err := s.Crowdsale.CloseCrowdsale(opts, close)
+    if err != nil {
+        logrus.Error("Close failed ", err.Error())
+        s.Wallet.OnFailTransaction(err)
+
+        if s.Wallet.ValidateRepeatableTransaction(err) {
+            logrus.Warn("Repeat Close")
+
+            return s.Close(close)
+        }
+
+        return common.Hash{}, err
+    }
+    s.Wallet.OnSuccessTransaction()
+
+    logrus.Info("Closed status of sale is set to ", close, ", tx ", tx.Hash().String())
+
+    return tx.Hash(), nil
+}
+
 func (s *Crowdsale) Events(addrs []string, eventNames []string, startBlock int64) ([]modelsCommon.ContractEvent, error) {
     hashAddrs := make([]common.Hash, len(addrs))
     for _, addr := range addrs {
