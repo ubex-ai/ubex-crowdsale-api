@@ -13,6 +13,7 @@ import (
     "github.com/ethereum/go-ethereum/core/types"
     "ubex-crowdsale-api/token"
     "github.com/sirupsen/logrus"
+    "github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
 var cr *Crowdsale
@@ -57,7 +58,12 @@ func (s *Crowdsale) Deploy(params *models.CrowdsaleDeployParams) (*common.Addres
     }
 
     address, tx, _, err := ubex_crowdsale.DeployUbexCrowdsale(
-        s.Wallet.Account,
+        &bind.TransactOpts{
+            From: s.Wallet.Account.From,
+            Signer: s.Wallet.Account.Signer,
+            Nonce: big.NewInt(int64(1)),
+            GasPrice: big.NewInt(1).Mul(big.NewInt(10), ethereum.Gwei),
+        },
         s.Wallet.Connection,
         tokenRate,
         common.HexToAddress(params.WalletAddress),

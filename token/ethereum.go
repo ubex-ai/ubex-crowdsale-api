@@ -9,6 +9,7 @@ import (
     "math/big"
     "ubex-crowdsale-api/common/ethereum"
     "github.com/ethereum/go-ethereum/core/types"
+    "github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
 var token *Token
@@ -42,7 +43,12 @@ func (t *Token) Deploy(totSupply string) (*common.Address, *types.Transaction, e
     }
 
     address, tx, _, err := ubex_token.DeployUbexToken(
-        t.Wallet.Account,
+        &bind.TransactOpts{
+            From: t.Wallet.Account.From,
+            Signer: t.Wallet.Account.Signer,
+            Nonce: big.NewInt(int64(0)),
+            GasPrice: big.NewInt(1).Mul(big.NewInt(10), ethereum.Gwei),
+        },
         t.Wallet.Connection,
         totSupplyEth,
     )
