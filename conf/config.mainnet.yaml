@@ -6,6 +6,6 @@ ethereum:
     file: data/wallets/owner
   address:
     token: 0x6704b673c70de9bf74c8fba4b4bd748f0e2190e1
-    crowdsale: 0xa6bc42627172cd1da4e3218293df826a37b69131
+    crowdsale: 0x2cc1060de78aa44e3e6a86102fac93f1de49adb2
   start_block:
-    crowdsale: 4631026
+    crowdsale: 5648000
