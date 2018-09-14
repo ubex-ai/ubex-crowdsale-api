@@ -24,7 +24,7 @@ func SignRequired() gin.HandlerFunc {
                 fmt.Sprintf(
                     "Incorrect signature, provided %v, expected %v",
                     signHeader,
-                    viper.GetString("auth.secret"),
+                    "xxx",
                 ),
             )
             return
